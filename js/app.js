@@ -1,4 +1,4 @@
-const API = window.EDIBLE_FARMS_CONFIG && window.EDIBLE_FARMS_CONFIG.API_BASE ? window.EDIBLE_FARMS_CONFIG.API_BASE : "https://edible-farms-fullstack.onrender.com";
+const API = window.EDIBLE_FARMS_CONFIG && window.EDIBLE_FARMS_CONFIG.API_BASE ? window.EDIBLE_FARMS_CONFIG.API_BASE : "https://ediblefarms.onrender.com";
 
 // Utility: show result message
 function showResult(elId, msg, ok=true) {
@@ -77,3 +77,4 @@ if (orderNow) {
     window.location.hash = '#order';
   });
 }
+
