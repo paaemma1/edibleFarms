@@ -1,80 +1,73 @@
-const API = window.EDIBLE_FARMS_CONFIG && window.EDIBLE_FARMS_CONFIG.API_BASE ? window.EDIBLE_FARMS_CONFIG.API_BASE : "https://ediblefarms.onrender.com";
+// ✅ HARD-CODED, CORRECT BACKEND URL
+const API = "https://edible-farms-fullstack.onrender.com";
 
-// Utility: show result message
-function showResult(elId, msg, ok=true) {
-  const el = document.getElementById(elId);
+// Utility message
+function showResult(id, msg, ok = true) {
+  const el = document.getElementById(id);
   if (!el) return;
   el.textContent = msg;
   el.style.color = ok ? "green" : "crimson";
-  setTimeout(()=> el.textContent = "", 7000);
+  setTimeout(() => el.textContent = "", 6000);
 }
 
-// Contact form
-const contactForm = document.getElementById('contact-form');
-if (contactForm) {
-  contactForm.addEventListener('submit', async (e)=>{
-    e.preventDefault();
-    const payload = {
-      name: document.getElementById('c-name').value,
-      email: document.getElementById('c-email').value,
-      message: document.getElementById('c-message').value
-    };
-    try {
-      const res = await fetch(`${API}/api/inquiry`, {
-        method: 'POST',
-        headers: { 'Content-Type':'application/json' },
-        body: JSON.stringify(payload)
-      });
-      const data = await res.json();
-      if (data.success) showResult('contact-result','Message sent — we will contact you.');
-      else showResult('contact-result','Failed to send message',false);
-    } catch(err) {
-      console.error(err);
-      showResult('contact-result','Network error — try again',false);
+// CONTACT FORM
+document.getElementById("contact-form")?.addEventListener("submit", async e => {
+  e.preventDefault();
+
+  try {
+    const res = await fetch(`${API}/api/inquiry`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: c-name.value,
+        email: c-email.value,
+        message: c-message.value
+      })
+    });
+
+    const data = await res.json();
+    data.success
+      ? showResult("contact-result", "Message sent successfully")
+      : showResult("contact-result", "Failed to send", false);
+
+  } catch {
+    showResult("contact-result", "Network error", false);
+  }
+});
+
+// ORDER FORM
+document.getElementById("order-form")?.addEventListener("submit", async e => {
+  e.preventDefault();
+
+  try {
+    const res = await fetch(`${API}/api/order`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: o-name.value,
+        phone: o-phone.value,
+        type: o-type.value,
+        qty: Number(o-qty.value),
+        address: o-address.value
+      })
+    });
+
+    const data = await res.json();
+    if (data.success) {
+      showResult("order-result", "Order received — we will call you");
+      e.target.reset();
+    } else {
+      showResult("order-result", "Order failed", false);
     }
-  });
-}
 
-// Order form
-const orderForm = document.getElementById('order-form');
-if (orderForm) {
-  orderForm.addEventListener('submit', async (e)=>{
-    e.preventDefault();
-    const payload = {
-      name: document.getElementById('o-name').value,
-      phone: document.getElementById('o-phone').value,
-      type: document.getElementById('o-type').value,
-      qty: Number(document.getElementById('o-qty').value),
-      address: document.getElementById('o-address').value
-    };
-    try {
-      const res = await fetch(`${API}/api/order`, {
-        method: 'POST',
-        headers: { 'Content-Type':'application/json' },
-        body: JSON.stringify(payload)
-      });
-      const data = await res.json();
-      if (data.success) {
-        showResult('order-result','Order received — we will call to confirm.');
-        orderForm.reset();
-        document.getElementById('o-phone').value = '+233546600063';
-        document.getElementById('o-type').value = 'A';
-      } else showResult('order-result','Failed to submit order',false);
-    } catch(err) {
-      console.error(err);
-      showResult('order-result','Network error — try again',false);
-    }
-  });
-}
+  } catch {
+    showResult("order-result", "Network error", false);
+  }
+});
 
-// Prefill order "A" quick link
-const orderNow = document.getElementById('order-now');
-if (orderNow) {
-  orderNow.addEventListener('click', (e)=>{
-    e.preventDefault();
-    const typ = document.getElementById('o-type');
-    if (typ) typ.value = 'A';
-    window.location.hash = '#order';
-  });
-}
-
+// ORDER NOW BUTTON
+document.getElementById("order-now")?.addEventListener("click", e => {
+  e.preventDefault();
+  document.getElementById("o-type").value = "A";
+  location.hash = "#order";
+});
