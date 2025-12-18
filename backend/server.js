@@ -1,21 +1,31 @@
 import express from "express";
 import cors from "cors";
+import nodemailer from "nodemailer";
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-// --- TEMP STORAGE (in-memory) ---
+// ---------------- EMAIL SETUP ----------------
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS
+  }
+});
+
+// ---------------- TEMP STORAGE ----------------
 let orders = [];
 let inquiries = [];
 
-// --- ROOT ---
+// ---------------- ROOT ----------------
 app.get("/", (req, res) => {
   res.json({ status: "OK", service: "Edible Farms API" });
 });
 
-// --- CREATE ORDER ---
-app.post("/api/order", (req, res) => {
+// ---------------- CREATE ORDER ----------------
+app.post("/api/order", async (req, res) => {
   const newOrder = {
     id: orders.length + 1,
     ...req.body,
@@ -23,13 +33,30 @@ app.post("/api/order", (req, res) => {
   };
 
   orders.push(newOrder);
-  console.log("New Order:", newOrder);
 
-  res.json({ success: true, message: "Order received!" });
+  try {
+    await transporter.sendMail({
+      from: `"Edible Farms" <${process.env.EMAIL_USER}>`,
+      to: process.env.EMAIL_USER,
+      subject: "🟢 New Order Received",
+      html: `
+        <h3>New Order</h3>
+        <p><strong>Name:</strong> ${newOrder.name}</p>
+        <p><strong>Phone:</strong> ${newOrder.phone}</p>
+        <p><strong>Order Type:</strong> ${newOrder.type}</p>
+        <p><strong>Quantity:</strong> ${newOrder.qty} kg</p>
+        <p><strong>Address:</strong> ${newOrder.address}</p>
+      `
+    });
+  } catch (err) {
+    console.error("Order email failed:", err);
+  }
+
+  res.json({ success: true });
 });
 
-// --- CREATE INQUIRY ---
-app.post("/api/inquiry", (req, res) => {
+// ---------------- CREATE INQUIRY ----------------
+app.post("/api/inquiry", async (req, res) => {
   const newInquiry = {
     id: inquiries.length + 1,
     ...req.body,
@@ -37,21 +64,35 @@ app.post("/api/inquiry", (req, res) => {
   };
 
   inquiries.push(newInquiry);
-  console.log("New Inquiry:", newInquiry);
 
-  res.json({ success: true, message: "Inquiry submitted!" });
+  try {
+    await transporter.sendMail({
+      from: `"Edible Farms" <${process.env.EMAIL_USER}>`,
+      to: process.env.EMAIL_USER,
+      subject: "📩 New Inquiry",
+      html: `
+        <h3>New Inquiry</h3>
+        <p><strong>Name:</strong> ${newInquiry.name}</p>
+        <p><strong>Email:</strong> ${newInquiry.email}</p>
+        <p><strong>Message:</strong><br>${newInquiry.message}</p>
+      `
+    });
+  } catch (err) {
+    console.error("Inquiry email failed:", err);
+  }
+
+  res.json({ success: true });
 });
 
-// --- ADMIN: GET ALL ORDERS ---
+// ---------------- ADMIN ----------------
 app.get("/api/admin/orders", (req, res) => {
   res.json({ success: true, data: orders });
 });
 
-// --- ADMIN: GET ALL INQUIRIES ---
 app.get("/api/admin/inquiries", (req, res) => {
   res.json({ success: true, data: inquiries });
 });
 
-// Server start
+// ---------------- START ----------------
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => console.log("API running on port", PORT));
