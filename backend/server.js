@@ -3,44 +3,61 @@ import cors from "cors";
 
 const app = express();
 
-// Middleware
-app.use(cors());
+app.use(cors({
+  origin: "*",
+  methods: ["GET", "POST"],
+  allowedHeaders: ["Content-Type"]
+}));
+
 app.use(express.json());
 
-// Health check
+// --- health check ---
 app.get("/", (req, res) => {
-  res.json({
-    status: "OK",
-    service: "Edible Farms API"
-  });
+  res.status(200).json({ ok: true });
 });
 
-// Contact inquiry
+// --- contact ---
 app.post("/api/inquiry", (req, res) => {
-  const { name, email, message } = req.body;
+  try {
+    const { name, email, message } = req.body;
 
-  if (!name || !email || !message) {
-    return res.status(400).json({ success: false });
+    if (!name || !email || !message) {
+      return res.status(400).json({ success: false, error: "Missing fields" });
+    }
+
+    console.log("Inquiry:", req.body);
+    return res.json({ success: true });
+
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ success: false, error: "Server error" });
   }
-
-  console.log("Inquiry:", req.body);
-  res.json({ success: true });
 });
 
-// Order
+// --- order ---
 app.post("/api/order", (req, res) => {
-  const { name, phone, type, qty } = req.body;
+  try {
+    const { name, phone, type, qty } = req.body;
 
-  if (!name || !phone || !type || !qty) {
-    return res.status(400).json({ success: false });
+    if (!name || !phone || !type || !qty) {
+      return res.status(400).json({ success: false, error: "Missing fields" });
+    }
+
+    console.log("Order:", req.body);
+    return res.json({ success: true });
+
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ success: false, error: "Server error" });
   }
-
-  console.log("Order:", req.body);
-  res.json({ success: true });
 });
 
-// Start server
+// --- fallback (CRITICAL) ---
+app.use((req, res) => {
+  res.status(404).json({ success: false, error: "Route not found" });
+});
+
 const PORT = process.env.PORT || 10000;
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log("API running on port", PORT);
 });
