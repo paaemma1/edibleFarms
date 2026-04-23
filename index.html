@@ -32,27 +32,36 @@
   position: absolute;
   top: 0;
   width: 100%;
-  padding: 1.5rem 6%;
+  height: 96px;                 /* 🔒 fixed header height */
+  padding: 0 6%;
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
   z-index: 100;
 }
 
-    .logo-container { display: flex; align-items: center; gap: 12px; text-decoration: none; color: white; }
-    .logo-img {
-  height: 400px;
-  width: auto;
-  filter: brightness(0) invert(1);
+    .logo-container {
+  position: relative;
+}
+
+.logo-img {
+  opacity: 0.95;
+  transition: transform 0.4s ease;
+}
+
+header.main-header:hover .logo-img {
+  transform: translateY(-50%) scale(1.02);
 }
     .main-nav {
   display: flex;
-  justify-content: center; /* 👈 centers nav */
+  justify-content: center;
   align-items: center;
+  height: 100%;
 }
 
 .main-nav a {
   margin: 0 1.2rem;
+  line-height: 96px;            /* matches header height */
   color: white;
   text-decoration: none;
   font-size: 0.9rem;
@@ -84,17 +93,16 @@
       background-repeat: no-repeat;
     }
 
-    .hero-content {
-  margin-top: 2.5rem;
+    .hero {
+  padding-top: 140px;  /* header + logo breathing room */
 }
     .hero-tagline {
-  margin-top: 3.5rem;   /* 👈 pushes it down */
+  margin-top: 4.5rem;
   margin-bottom: 1.2rem;
-  color: var(--accent-green);
+  font-size: 0.65rem;
   letter-spacing: 2px;
   font-weight: 600;
-  text-transform: uppercase;
-  font-size: 0.65rem;
+  color: var(--accent-green);
 }
     .hero h2 {
   margin-top: 0.5rem;
