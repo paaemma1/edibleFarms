@@ -32,7 +32,7 @@
       padding: 1.5rem 6%;
       display: flex;
       justify-content: space-between;
-      align-items: center;
+      align-items: center-right;
       position: absolute;
       width: 100%;
       z-index: 100;
@@ -73,8 +73,8 @@
     }
 
     .hero-content { max-width: 600px; margin-bottom: 50px; }
-    .hero-tagline { color: var(--accent-green); letter-spacing: 2px; font-weight: 700; text-transform: uppercase; margin-bottom: 1.2rem; font-size: 0.8rem; }
-    .hero h2 { font-size: clamp(2.5rem, 5vw, 4.2rem); line-height: 1.05; font-weight: 800; margin-bottom: 1.5rem; }
+    .hero-tagline { color: var(--accent-green); letter-spacing: 2px; font-weight: 600; text-transform: uppercase; margin-bottom: 1.0rem; font-size: 0.5rem; }
+    .hero h2 { font-size: clamp(2.0rem, 5vw, 4.2rem); line-height: 1.05; font-weight: 800; margin-bottom: 1.5rem; }
 
     /* --- Buttons with Icons --- */
     .btn-group { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem; }
@@ -150,6 +150,7 @@
     <a href="#" class="logo-container">
   <img src="logo.png" alt="EdibleFarms Logo" class="logo-img" />
 </a>
+  </header>
     <nav>
       <a href="#">Home</a>
       <a href="#">About Us</a>
@@ -164,7 +165,7 @@
   <section class="hero">
     <div class="hero-content">
       <p class="hero-tagline">Fresh. Local. Responsible.</p>
-      <h2>Premium Catfish.<br/>Raised Naturally.</h2>
+      <h2>Premium Catfish<br/>Raised Naturally</h2>
       
       <div class="btn-group">
         <a href="#" class="btn btn-primary">
