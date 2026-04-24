@@ -221,13 +221,29 @@
       }
     }
 
+    /* ===== INCREASED FONT SIZE FOR TAGLINE ===== */
     .hero-tagline {
       color: var(--accent-green);
-      font-size: 0.7rem;
+      font-size: 1rem;        /* was 0.7rem → increased for better visibility */
       letter-spacing: 4px;
       font-weight: 700;
       text-transform: uppercase;
       margin-bottom: 0.75rem;
+    }
+
+    /* for larger screens, make it even more prominent but elegant */
+    @media (min-width: 768px) {
+      .hero-tagline {
+        font-size: 1.1rem;
+        letter-spacing: 5px;
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .hero-tagline {
+        font-size: 1.2rem;
+        letter-spacing: 6px;
+      }
     }
 
     .hero h2 {
@@ -348,6 +364,11 @@
       .trusted-text {
         font-size: 0.75rem;
       }
+      /* slightly smaller tagline on mobile but still larger than before */
+      .hero-tagline {
+        font-size: 0.9rem;
+        letter-spacing: 4px;
+      }
     }
 
     @media (max-width: 600px) {
@@ -360,6 +381,10 @@
       }
       .btn-group .btn {
         padding: 0.65rem 1.4rem;
+      }
+      .hero-tagline {
+        font-size: 0.85rem;
+        letter-spacing: 3px;
       }
     }
 
@@ -397,7 +422,7 @@
     <a href="#">Contact</a>
   </div>
 
-  <!-- Hero Section: Now content moved significantly upward, no creepy raw image – deep gradient overlay gives premium, organic blend -->
+  <!-- Hero Section: Now content moved significantly upward, rich gradient overlay, tagline font size increased -->
   <section class="hero">
     <div class="hero-content">
       <p class="hero-tagline">FRESH. LOCAL. RESPONSIBLE.</p>
