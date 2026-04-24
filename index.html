@@ -74,28 +74,34 @@
       height: 92px;
     }
 
-    /* desktop navigation */
+    /* ===== CENTERED NAVIGATION - larger font, spaced out ===== */
     .nav-links {
       display: flex;
-      gap: 2rem;
+      justify-content: center;
       align-items: center;
+      gap: 2.8rem;        /* increased spacing between items */
+      flex: 1;
+      margin: 0 1rem;
     }
 
     .nav-links a {
       color: #f1f5f9;
       text-decoration: none;
-      font-size: 0.9rem;
+      font-size: 1rem;    /* larger base font size */
       font-weight: 500;
       letter-spacing: -0.2px;
-      transition: color 0.2s;
+      transition: all 0.2s ease;
       opacity: 0.9;
+      white-space: nowrap;
     }
 
     .nav-links a:hover {
       color: var(--accent-green);
       opacity: 1;
+      transform: translateY(-1px);
     }
 
+    /* optional contact pill on the right */
     .contact-pill {
       background: var(--accent-green);
       color: var(--primary-dark) !important;
@@ -103,11 +109,23 @@
       border-radius: 40px;
       font-weight: 700;
       transition: 0.2s;
+      margin-left: auto;
     }
 
     .contact-pill:hover {
       background: #1fba5c;
       transform: scale(0.97);
+    }
+
+    /* for screens where nav needs to breathe */
+    @media (min-width: 1200px) {
+      .nav-links {
+        gap: 3.2rem;
+      }
+      .nav-links a {
+        font-size: 1.05rem;
+        font-weight: 500;
+      }
     }
 
     /* mobile menu */
@@ -154,11 +172,9 @@
     /* ===== HERO SECTION : Premium gradient overlay + content moved WAY UP ===== */
     .hero {
       min-height: 92vh;
-      /* drastically reduced top padding → content moves up to utilize white space under logo */
       padding: 60px 8% 90px;
       display: flex;
       align-items: center;
-      /* PREMIUM GRADIENT OVERLAY: rich depth, blends naturally with background image */
       background: 
         linear-gradient(105deg, 
           rgba(6, 29, 24, 0.92) 0%,
@@ -170,33 +186,21 @@
       background-position: 72% center;
       background-repeat: no-repeat;
       background-blend-mode: normal;
-      transition: background 0.2s;
     }
 
-    /* further top-padding adjustments for spacious but not too distant */
     @media (min-width: 1400px) {
-      .hero {
-        padding-top: 45px;
-      }
+      .hero { padding-top: 45px; }
     }
     @media (max-width: 1200px) and (min-width: 992px) {
-      .hero {
-        padding-top: 55px;
-      }
+      .hero { padding-top: 55px; }
     }
     @media (max-width: 991px) {
-      .hero {
-        padding-top: 70px;
-      }
+      .hero { padding-top: 70px; }
     }
     @media (max-width: 768px) {
-      .hero {
-        padding-top: 75px;
-        background-position: 55% center;
-      }
+      .hero { padding-top: 75px; background-position: 55% center; }
     }
 
-    /* hero content - lifted closer to header, but still refined spacing */
     .hero-content {
       max-width: 680px;
       margin-top: -10px;
@@ -221,24 +225,22 @@
       }
     }
 
-    /* ===== INCREASED FONT SIZE FOR TAGLINE ===== */
+    /* larger tagline as requested earlier */
     .hero-tagline {
       color: var(--accent-green);
-      font-size: 1rem;        /* was 0.7rem → increased for better visibility */
+      font-size: 1rem;
       letter-spacing: 4px;
       font-weight: 700;
       text-transform: uppercase;
       margin-bottom: 0.75rem;
     }
 
-    /* for larger screens, make it even more prominent but elegant */
     @media (min-width: 768px) {
       .hero-tagline {
         font-size: 1.1rem;
         letter-spacing: 5px;
       }
     }
-
     @media (min-width: 1200px) {
       .hero-tagline {
         font-size: 1.2rem;
@@ -314,13 +316,11 @@
       border: 0.5px solid rgba(255,255,255,0.2);
     }
 
-    /* restaurant CTA section premium */
     .restaurant-cta {
       padding: 85px 8%;
       background: linear-gradient(125deg, #062a22, #02120e);
       text-align: center;
       border-top: 1px solid rgba(37, 211, 102, 0.25);
-      position: relative;
     }
 
     .restaurant-cta h3 {
@@ -338,7 +338,7 @@
       color: #cbdbe6;
     }
 
-    /* responsive fine-tune for extreme compactness + premium feel */
+    /* responsive adjustments for nav and header */
     @media (max-width: 900px) {
       .nav-links, .contact-pill {
         display: none;
@@ -364,7 +364,6 @@
       .trusted-text {
         font-size: 0.75rem;
       }
-      /* slightly smaller tagline on mobile but still larger than before */
       .hero-tagline {
         font-size: 0.9rem;
         letter-spacing: 4px;
@@ -388,9 +387,14 @@
       }
     }
 
-    /* background image fallback subtle enhancement */
-    .hero {
-      background-blend-mode: normal;
+    /* For very large screens, ensure nav stays well centered */
+    @media (min-width: 1600px) {
+      .nav-links {
+        gap: 4rem;
+      }
+      .nav-links a {
+        font-size: 1.1rem;
+      }
     }
   </style>
 </head>
@@ -401,6 +405,7 @@
       <img src="logo.png" alt="Edible Farms - Premium Catfish" class="logo-img" onerror="this.style.opacity='0.9';">
     </div>
 
+    <!-- Navigation moved to middle, larger font, spaced out -->
     <div class="nav-links">
       <a href="#">Home</a>
       <a href="#">About</a>
@@ -410,6 +415,7 @@
       <a href="#">Contact</a>
     </div>
 
+    <!-- optional contact pill (kept for symmetry, but can stay) -->
     <div class="menu-toggle" id="menuToggle" aria-label="Menu">☰</div>
   </header>
 
@@ -422,7 +428,6 @@
     <a href="#">Contact</a>
   </div>
 
-  <!-- Hero Section: Now content moved significantly upward, rich gradient overlay, tagline font size increased -->
   <section class="hero">
     <div class="hero-content">
       <p class="hero-tagline">FRESH. LOCAL. RESPONSIBLE.</p>
@@ -447,7 +452,6 @@
 
   <script>
     (function() {
-      // Sticky header scroll effect
       const header = document.getElementById('mainHeader');
       const menuToggle = document.getElementById('menuToggle');
       const mobileNav = document.getElementById('mobileNav');
@@ -462,7 +466,6 @@
       window.addEventListener('scroll', handleScroll);
       handleScroll();
 
-      // mobile menu toggling + close on link click
       if (menuToggle && mobileNav) {
         menuToggle.addEventListener('click', (e) => {
           e.stopPropagation();
@@ -483,7 +486,6 @@
         });
       }
 
-      // graceful logo fallback
       const logo = document.querySelector('.logo-img');
       if (logo && logo.complete && logo.naturalWidth === 0) {
         logo.style.opacity = '0.95';
