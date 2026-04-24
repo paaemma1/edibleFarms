@@ -52,13 +52,14 @@
       height: 78px;
     }
 
-    /* LOGO: big & premium */
+    /* LOGO: big & premium - shifted down a bit */
     .logo-container {
       position: relative;
       display: flex;
       align-items: center;
       justify-content: flex-start;
       min-width: 210px;
+      transform: translateY(8px);  /* subtle shift downward */
     }
 
     .logo-img {
@@ -68,6 +69,11 @@
       transition: height 0.35s ease;
       display: block;
       object-fit: contain;
+    }
+
+    /* when scrolled, reduce the downward shift to keep proportion */
+    .main-header.scrolled .logo-container {
+      transform: translateY(4px);
     }
 
     .main-header.scrolled .logo-img {
@@ -185,7 +191,7 @@
 
     .hero-content {
       max-width: 740px;
-      margin-top: 20px;  /* shifted content down a bit for better vertical rhythm */
+      margin-top: 20px;
     }
 
     /* fade-up animation */
@@ -214,7 +220,7 @@
       letter-spacing: 4px;
       font-weight: 700;
       text-transform: uppercase;
-      margin-bottom: 1rem;  /* increased spacing */
+      margin-bottom: 1rem;
     }
 
     @media (min-width: 768px) {
@@ -236,16 +242,15 @@
       font-size: clamp(3rem, 6.5vw, 4.8rem);
       font-weight: 800;
       line-height: 1.08;
-      margin-bottom: 1.2rem;  /* increased spacing below headline */
+      margin-bottom: 1.2rem;
       letter-spacing: -0.02em;
       text-shadow: 0 2px 5px rgba(0,0,0,0.2);
     }
 
-    /* New description text styling - more breathing room */
     .hero-description {
       font-size: 1.05rem;
       line-height: 1.6;
-      margin-bottom: 2.2rem;  /* more space before buttons */
+      margin-bottom: 2.2rem;
       color: #e2edf2;
       max-width: 620px;
       font-weight: 400;
@@ -264,7 +269,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: 1.2rem;
-      margin-bottom: 2rem;  /* increased spacing before trusted text */
+      margin-bottom: 2rem;
     }
 
     .btn {
@@ -342,7 +347,7 @@
       color: #cbdbe6;
     }
 
-    /* responsive adjustments */
+    /* responsive adjustments for logo shift */
     @media (max-width: 900px) {
       .nav-links {
         display: none;
@@ -353,8 +358,14 @@
       .main-header {
         padding: 0 5%;
       }
+      .logo-container {
+        transform: translateY(6px);
+      }
       .logo-img {
         height: 180px;
+      }
+      .main-header.scrolled .logo-container {
+        transform: translateY(3px);
       }
       .main-header.scrolled .logo-img {
         height: 70px;
@@ -387,6 +398,9 @@
       .hero {
         padding-top: 90px;
         min-height: auto;
+      }
+      .logo-container {
+        transform: translateY(5px);
       }
       .hero-content {
         margin-top: 10px;
@@ -422,6 +436,12 @@
       .hero-description {
         font-size: 1.2rem;
         max-width: 660px;
+      }
+      .logo-container {
+        transform: translateY(10px);
+      }
+      .main-header.scrolled .logo-container {
+        transform: translateY(5px);
       }
     }
   </style>
@@ -459,7 +479,6 @@
       <p class="hero-tagline">FRESH. LOCAL. RESPONSIBLE.</p>
       <h2>Premium Catfish.<br>Raised Naturally.</h2>
       
-      <!-- New descriptive paragraph with increased spacing and breathing room -->
       <p class="hero-description">
         Ditch the mystery meat. Edible Farms brings you buttery, high-protein catfish raised with a conscience. 
         Locally sourced, sustainably grown, and delivered fresh, this is farm-to-fork at its finest.
