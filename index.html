@@ -184,8 +184,8 @@
     }
 
     .hero-content {
-      max-width: 720px;
-      margin-top: -10px;
+      max-width: 740px;
+      margin-top: 20px;  /* shifted content down a bit for better vertical rhythm */
     }
 
     /* fade-up animation */
@@ -214,19 +214,21 @@
       letter-spacing: 4px;
       font-weight: 700;
       text-transform: uppercase;
-      margin-bottom: 0.75rem;
+      margin-bottom: 1rem;  /* increased spacing */
     }
 
     @media (min-width: 768px) {
       .hero-tagline {
         font-size: 1.1rem;
         letter-spacing: 5px;
+        margin-bottom: 1.2rem;
       }
     }
     @media (min-width: 1200px) {
       .hero-tagline {
         font-size: 1.2rem;
         letter-spacing: 6px;
+        margin-bottom: 1.3rem;
       }
     }
 
@@ -234,16 +236,16 @@
       font-size: clamp(3rem, 6.5vw, 4.8rem);
       font-weight: 800;
       line-height: 1.08;
-      margin-bottom: 0.75rem;
+      margin-bottom: 1.2rem;  /* increased spacing below headline */
       letter-spacing: -0.02em;
       text-shadow: 0 2px 5px rgba(0,0,0,0.2);
     }
 
-    /* New description text styling */
+    /* New description text styling - more breathing room */
     .hero-description {
       font-size: 1.05rem;
-      line-height: 1.5;
-      margin-bottom: 2rem;
+      line-height: 1.6;
+      margin-bottom: 2.2rem;  /* more space before buttons */
       color: #e2edf2;
       max-width: 620px;
       font-weight: 400;
@@ -252,8 +254,9 @@
 
     @media (min-width: 768px) {
       .hero-description {
-        font-size: 1.1rem;
-        line-height: 1.55;
+        font-size: 1.12rem;
+        line-height: 1.65;
+        margin-bottom: 2.5rem;
       }
     }
 
@@ -261,7 +264,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: 1.2rem;
-      margin-bottom: 1.8rem;
+      margin-bottom: 2rem;  /* increased spacing before trusted text */
     }
 
     .btn {
@@ -310,10 +313,11 @@
       color: #e2edf2;
       background: rgba(0, 0, 0, 0.35);
       backdrop-filter: blur(12px);
-      padding: 0.55rem 1.2rem;
+      padding: 0.6rem 1.3rem;
       border-radius: 60px;
       width: fit-content;
       border: 0.5px solid rgba(255,255,255,0.2);
+      margin-top: 0.25rem;
     }
 
     .restaurant-cta {
@@ -359,11 +363,15 @@
         padding-top: 80px;
       }
       .hero-content {
-        margin-top: 0px;
+        margin-top: 15px;
       }
       .hero-description {
-        font-size: 0.95rem;
-        margin-bottom: 1.6rem;
+        font-size: 0.98rem;
+        margin-bottom: 1.8rem;
+        line-height: 1.55;
+      }
+      .hero h2 {
+        margin-bottom: 1rem;
       }
       .trusted-text {
         font-size: 0.75rem;
@@ -371,6 +379,7 @@
       .hero-tagline {
         font-size: 0.9rem;
         letter-spacing: 4px;
+        margin-bottom: 0.9rem;
       }
     }
 
@@ -379,12 +388,19 @@
         padding-top: 90px;
         min-height: auto;
       }
+      .hero-content {
+        margin-top: 10px;
+      }
       .hero h2 {
-        margin-bottom: 0.6rem;
+        margin-bottom: 0.9rem;
       }
       .hero-description {
         font-size: 0.9rem;
-        margin-bottom: 1.4rem;
+        margin-bottom: 1.6rem;
+        line-height: 1.5;
+      }
+      .btn-group {
+        margin-bottom: 1.6rem;
       }
       .btn-group .btn {
         padding: 0.65rem 1.4rem;
@@ -392,6 +408,7 @@
       .hero-tagline {
         font-size: 0.85rem;
         letter-spacing: 3px;
+        margin-bottom: 0.8rem;
       }
     }
 
@@ -401,6 +418,10 @@
       }
       .nav-links a {
         font-size: 1.1rem;
+      }
+      .hero-description {
+        font-size: 1.2rem;
+        max-width: 660px;
       }
     }
   </style>
@@ -438,7 +459,7 @@
       <p class="hero-tagline">FRESH. LOCAL. RESPONSIBLE.</p>
       <h2>Premium Catfish.<br>Raised Naturally.</h2>
       
-      <!-- New descriptive paragraph added right under the headline -->
+      <!-- New descriptive paragraph with increased spacing and breathing room -->
       <p class="hero-description">
         Ditch the mystery meat. Edible Farms brings you buttery, high-protein catfish raised with a conscience. 
         Locally sourced, sustainably grown, and delivered fresh, this is farm-to-fork at its finest.
