@@ -436,7 +436,7 @@
   <p style="text-align: center; margin-top: 2rem; opacity: 0.7;">Fresh harvest, sustainable ponds, and premium fillets — captured daily.</p>
 </section>
 
-<!-- Contact Section with Working Form - Updated Email -->
+<!-- Contact Section with YOUR Formspree ID -->
 <section id="contact">
   <h2 class="section-title">Let's <span>Connect</span></h2>
   <div class="contact-grid">
@@ -453,10 +453,13 @@
       </div>
     </div>
     <div class="contact-form">
-      <form id="contactForm" action="https://formspree.io/f/xbldjqap" method="POST">
+      <!-- UPDATED: Your new Formspree endpoint -->
+      <form id="contactForm" action="https://formspree.io/f/mbdqwvop" method="POST">
         <input type="text" name="name" placeholder="Your name" required>
         <input type="email" name="email" placeholder="Email address" required>
         <textarea name="message" rows="4" placeholder="Tell us about your order or inquiry..." required></textarea>
+        <!-- Optional: Add a hidden field to identify submissions -->
+        <input type="hidden" name="_subject" value="New Contact Form Submission from Edible Farms Website">
         <button type="submit">Send Message →</button>
       </form>
       <div id="formMessage" class="form-message"></div>
@@ -525,7 +528,7 @@
       });
     });
 
-    // Form submission handler with Formspree
+    // Form submission handler with YOUR Formspree endpoint
     if(contactForm) {
       contactForm.addEventListener('submit', async function(e) {
         e.preventDefault();
