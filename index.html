@@ -439,7 +439,7 @@
   <p style="text-align: center; margin-top: 2rem; opacity: 0.7;">Fresh harvest, sustainable ponds, and premium fillets — captured daily.</p>
 </section>
 
-<!-- Contact Section with EmailJS Integration -->
+<!-- Contact Section with EmailJS - FULLY INTEGRATED -->
 <section id="contact">
   <h2 class="section-title">Let's <span>Connect</span></h2>
   <div class="contact-grid">
@@ -460,10 +460,10 @@
         <input type="text" id="userName" name="name" placeholder="Your name" required>
         <input type="email" id="userEmail" name="email" placeholder="Email address" required>
         <textarea id="userMessage" name="message" rows="4" placeholder="Tell us about your order or inquiry..." required></textarea>
-        <button type="submit">Send Message →</button>
+        <button type="submit" id="submitBtn">Send Message →</button>
       </form>
       <div id="formMessage" class="form-message"></div>
-      <p style="font-size: 0.7rem; text-align: center; margin-top: 0.8rem; opacity: 0.6;">Your message will be sent directly to <strong>ediblefarms000@gmail.com</strong></p>
+      <p style="font-size: 0.7rem; text-align: center; margin-top: 0.8rem; opacity: 0.6;">✓ Messages are sent directly to <strong>ediblefarms000@gmail.com</strong></p>
     </div>
   </div>
 </section>
@@ -495,9 +495,10 @@
     const interactive = document.querySelectorAll('a, .btn, .service-card, .gallery-item, button');
     const contactForm = document.getElementById('contactForm');
     const formMessage = document.getElementById('formMessage');
+    const submitBtn = document.getElementById('submitBtn');
 
-    // Initialize EmailJS
-    emailjs.init("YOUR_PUBLIC_KEY"); // You'll replace this with your actual public key
+    // Initialize EmailJS with YOUR public key
+    emailjs.init("9M02Bt8C6vjgHs8Ty");
 
     // Sticky header
     window.addEventListener('scroll', () => {
@@ -531,37 +532,57 @@
       });
     });
 
-    // EmailJS Form Submission
+    // EmailJS Form Submission - NOW WORKS AUTOMATICALLY!
     if(contactForm) {
       contactForm.addEventListener('submit', async function(e) {
         e.preventDefault();
         
+        // Get form values
         const name = document.getElementById('userName').value;
         const email = document.getElementById('userEmail').value;
         const message = document.getElementById('userMessage').value;
-        const submitBtn = contactForm.querySelector('button');
-        const originalBtnText = submitBtn.innerHTML;
         
+        // Save original button text
+        const originalText = submitBtn.innerHTML;
+        
+        // Show loading state
         submitBtn.innerHTML = 'Sending...';
         submitBtn.disabled = true;
         
-        // EmailJS requires you to set up a service and template
-        // For now, we'll use a simple mailto fallback to ensure functionality
-        // You'll need to sign up at emailjs.com and replace the code below with your actual credentials
+        // Prepare template parameters
+        const templateParams = {
+          from_name: name,
+          from_email: email,
+          message: message,
+          to_email: 'ediblefarms000@gmail.com'
+        };
         
-        // TEMPORARY SOLUTION: Open email client with pre-filled message
-        const mailtoLink = `mailto:ediblefarms000@gmail.com?subject=New Contact Form Submission from ${encodeURIComponent(name)}&body=Name: ${encodeURIComponent(name)}%0AEmail: ${encodeURIComponent(email)}%0A%0AMessage:%0A${encodeURIComponent(message)}%0A%0A---%0ASent from Edible Farms website`;
-        
-        window.location.href = mailtoLink;
-        
-        formMessage.className = 'form-message success';
-        formMessage.innerHTML = '✓ Your email client has opened. Please click send to complete your message.';
-        contactForm.reset();
-        
-        submitBtn.innerHTML = originalBtnText;
-        submitBtn.disabled = false;
-        
-        setTimeout(() => { formMessage.style.display = 'none'; }, 5000);
+        try {
+          // Send email using EmailJS
+          const response = await emailjs.send('service_mmoe6g5', 'template_9vgeuzf', templateParams);
+          
+          if(response.status === 200) {
+            // Success!
+            formMessage.className = 'form-message success';
+            formMessage.innerHTML = '✓ Message sent successfully! We\'ll get back to you soon.';
+            contactForm.reset();
+          } else {
+            throw new Error('Failed to send');
+          }
+        } catch(error) {
+          console.error('EmailJS Error:', error);
+          formMessage.className = 'form-message error';
+          formMessage.innerHTML = '✗ Sorry, something went wrong. Please email us directly at ediblefarms000@gmail.com';
+        } finally {
+          // Reset button
+          submitBtn.innerHTML = originalText;
+          submitBtn.disabled = false;
+          
+          // Hide message after 5 seconds
+          setTimeout(() => {
+            formMessage.style.display = 'none';
+          }, 5000);
+        }
       });
     }
   })();
