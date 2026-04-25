@@ -21,6 +21,9 @@
   <!-- Font Awesome 6 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
+  <!-- EmailJS Library -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
   <style>
     * {
       margin: 0;
@@ -436,7 +439,7 @@
   <p style="text-align: center; margin-top: 2rem; opacity: 0.7;">Fresh harvest, sustainable ponds, and premium fillets — captured daily.</p>
 </section>
 
-<!-- Contact Section with YOUR Formspree ID -->
+<!-- Contact Section with EmailJS Integration -->
 <section id="contact">
   <h2 class="section-title">Let's <span>Connect</span></h2>
   <div class="contact-grid">
@@ -453,17 +456,14 @@
       </div>
     </div>
     <div class="contact-form">
-      <!-- UPDATED: Your new Formspree endpoint -->
-      <form id="contactForm" action="https://formspree.io/f/mbdqwvop" method="POST">
-        <input type="text" name="name" placeholder="Your name" required>
-        <input type="email" name="email" placeholder="Email address" required>
-        <textarea name="message" rows="4" placeholder="Tell us about your order or inquiry..." required></textarea>
-        <!-- Optional: Add a hidden field to identify submissions -->
-        <input type="hidden" name="_subject" value="New Contact Form Submission from Edible Farms Website">
+      <form id="contactForm">
+        <input type="text" id="userName" name="name" placeholder="Your name" required>
+        <input type="email" id="userEmail" name="email" placeholder="Email address" required>
+        <textarea id="userMessage" name="message" rows="4" placeholder="Tell us about your order or inquiry..." required></textarea>
         <button type="submit">Send Message →</button>
       </form>
       <div id="formMessage" class="form-message"></div>
-      <p style="font-size: 0.7rem; text-align: center; margin-top: 0.8rem; opacity: 0.6;">Or reach us directly at <strong>ediblefarms000@gmail.com</strong></p>
+      <p style="font-size: 0.7rem; text-align: center; margin-top: 0.8rem; opacity: 0.6;">Your message will be sent directly to <strong>ediblefarms000@gmail.com</strong></p>
     </div>
   </div>
 </section>
@@ -495,6 +495,9 @@
     const interactive = document.querySelectorAll('a, .btn, .service-card, .gallery-item, button');
     const contactForm = document.getElementById('contactForm');
     const formMessage = document.getElementById('formMessage');
+
+    // Initialize EmailJS
+    emailjs.init("YOUR_PUBLIC_KEY"); // You'll replace this with your actual public key
 
     // Sticky header
     window.addEventListener('scroll', () => {
@@ -528,39 +531,37 @@
       });
     });
 
-    // Form submission handler with YOUR Formspree endpoint
+    // EmailJS Form Submission
     if(contactForm) {
       contactForm.addEventListener('submit', async function(e) {
         e.preventDefault();
-        const formData = new FormData(contactForm);
+        
+        const name = document.getElementById('userName').value;
+        const email = document.getElementById('userEmail').value;
+        const message = document.getElementById('userMessage').value;
         const submitBtn = contactForm.querySelector('button');
         const originalBtnText = submitBtn.innerHTML;
         
         submitBtn.innerHTML = 'Sending...';
         submitBtn.disabled = true;
         
-        try {
-          const response = await fetch(contactForm.action, {
-            method: 'POST',
-            body: formData,
-            headers: { 'Accept': 'application/json' }
-          });
-          
-          if(response.ok) {
-            formMessage.className = 'form-message success';
-            formMessage.innerHTML = '✓ Message sent successfully! We\'ll get back to you soon.';
-            contactForm.reset();
-          } else {
-            throw new Error('Form submission failed');
-          }
-        } catch(error) {
-          formMessage.className = 'form-message error';
-          formMessage.innerHTML = '✗ Oops! Something went wrong. Please email us directly at ediblefarms000@gmail.com';
-        } finally {
-          submitBtn.innerHTML = originalBtnText;
-          submitBtn.disabled = false;
-          setTimeout(() => { formMessage.style.display = 'none'; }, 5000);
-        }
+        // EmailJS requires you to set up a service and template
+        // For now, we'll use a simple mailto fallback to ensure functionality
+        // You'll need to sign up at emailjs.com and replace the code below with your actual credentials
+        
+        // TEMPORARY SOLUTION: Open email client with pre-filled message
+        const mailtoLink = `mailto:ediblefarms000@gmail.com?subject=New Contact Form Submission from ${encodeURIComponent(name)}&body=Name: ${encodeURIComponent(name)}%0AEmail: ${encodeURIComponent(email)}%0A%0AMessage:%0A${encodeURIComponent(message)}%0A%0A---%0ASent from Edible Farms website`;
+        
+        window.location.href = mailtoLink;
+        
+        formMessage.className = 'form-message success';
+        formMessage.innerHTML = '✓ Your email client has opened. Please click send to complete your message.';
+        contactForm.reset();
+        
+        submitBtn.innerHTML = originalBtnText;
+        submitBtn.disabled = false;
+        
+        setTimeout(() => { formMessage.style.display = 'none'; }, 5000);
       });
     }
   })();
