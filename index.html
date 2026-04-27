@@ -48,21 +48,6 @@
       overflow-x: hidden;
     }
 
-    /* custom cursor */
-    .custom-cursor {
-      width: 8px;
-      height: 8px;
-      background: var(--accent-green);
-      border-radius: 50%;
-      position: fixed;
-      pointer-events: none;
-      z-index: 9999;
-      transition: transform 0.1s, width 0.2s, height 0.2s;
-      transform: translate(-50%, -50%);
-      mix-blend-mode: difference;
-    }
-    .custom-cursor.hover { width: 32px; height: 32px; background: rgba(37,211,102,0.4); backdrop-filter: blur(2px); mix-blend-mode: normal; }
-
     /* header */
     .main-header {
       position: fixed;
@@ -348,8 +333,6 @@
 </head>
 <body>
 
-<div class="custom-cursor"></div>
-
 <header class="main-header" id="mainHeader">
   <div class="logo-container">
     <img src="logo.png" alt="Edible Farms - Premium Catfish Logo" class="logo-img" loading="eager">
@@ -430,16 +413,16 @@
   <h2 class="section-title">From Pond to <span>Plate</span></h2>
   <div class="gallery-grid">
     <div class="gallery-item"><img src="https://www.shutterstock.com/image-photo/some-white-catfish-popularly-known-600nw-2304531177.jpg" alt="Fresh whole catfish on ice at Edible Farms" loading="lazy"><div class="gallery-overlay">Fresh Catch</div></div>
-    <div class="gallery-item"><img src="https://www.fao.org/fishery/services/storage/fs/fishery/images/culturedspecies//clarias/12swam-pond-clarias-harvest-Santchou.jpg" alt="Sustainable fish farming pond at Edible Farms" loading="lazy"><div class="gallery-overlay">Natural Ponds</div></div>
-    <div class="gallery-item"><img src="https://www.aquaculturealliance.org/wp-content/uploads/2009/09/ROGERSpic1-960x450.jpg" alt="Grilled premium catfish fillet dish" loading="lazy"><div class="gallery-overlay">Premium Fillets</div></div>
+    <div class="gallery-item"><img src="https://www.aquaculturealliance.org/wp-content/uploads/2009/09/ROGERSpic1-960x450.jpg" alt="Sustainable fish farming pond at Edible Farms" loading="lazy"><div class="gallery-overlay">Natural Ponds</div></div>
+    <div class="gallery-item"><img src="https://fishtank.com.ng/wp-content/uploads/2020/12/DSC_5368-1-scaled.jpg" alt="Grilled premium catfish fillet dish" loading="lazy"><div class="gallery-overlay">Premium Fillets</div></div>
     <div class="gallery-item"><img src="https://emeraldtransportationsolutions.com/wp-content/uploads/2022/05/0ylzNNplW9qe0fPfGGeG9kHnnRZvqZSx1655986652.jpg" alt="Fresh catfish delivery truck farm to table" loading="lazy"><div class="gallery-overlay">Farm to Table</div></div>
-    <div class="gallery-item"><img src="https://fishtank.com.ng/wp-content/uploads/2020/12/DSC_5368-1-scaled.jpg" alt="Morning catfish harvest at Edible Farms" loading="lazy"><div class="gallery-overlay">Morning Harvest</div></div>
+    <div class="gallery-item"><img src="https://www.fao.org/fishery/services/storage/fs/fishery/images/culturedspecies//clarias/12swam-pond-clarias-harvest-Santchou.jpg" alt="Morning catfish harvest at Edible Farms" loading="lazy"><div class="gallery-overlay">Morning Harvest</div></div>
     <div class="gallery-item"><img src="https://cheflolaskitchen.com/wp-content/uploads/2025/07/Catfish-Steak.jpg" alt="Chef preparing premium catfish steak" loading="lazy"><div class="gallery-overlay">Chef Approved</div></div>
   </div>
   <p style="text-align: center; margin-top: 2rem; opacity: 0.7;">Fresh harvest, sustainable ponds, and premium fillets — captured daily.</p>
 </section>
-  
-<!-- Contact Section - FULLY WORKING WITH CORRECT VARIABLE NAMES -->
+
+<!-- Contact Section -->
 <section id="contact">
   <h2 class="section-title">Let's <span>Connect</span></h2>
   <div class="contact-grid">
@@ -452,7 +435,7 @@
         <a href="https://wa.me/233546600063" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
         <a href="https://instagram.com/ediblefarms" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
         <a href="https://facebook.com/ediblefarms" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://x.com/ediblefarms" target="_blank" rel="noopener noreferrer" aria-label="x"><i class="fab fa-x"></i></a>
+        <a href="https://twitter.com/ediblefarms" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
       </div>
     </div>
     <div class="contact-form">
@@ -491,13 +474,11 @@
     const header = document.getElementById('mainHeader');
     const menuToggle = document.getElementById('menuToggle');
     const mobileNav = document.getElementById('mobileNav');
-    const cursor = document.querySelector('.custom-cursor');
-    const interactive = document.querySelectorAll('a, .btn, .service-card, .gallery-item, button');
     const contactForm = document.getElementById('contactForm');
     const formMessage = document.getElementById('formMessage');
     const submitBtn = document.getElementById('submitBtn');
 
-    // Initialize EmailJS with YOUR public key
+    // Initialize EmailJS
     emailjs.init("9M02Bt8C6vjgHs8Ty");
 
     // Sticky header
@@ -515,15 +496,6 @@
       });
     }
 
-    // Custom cursor
-    if(cursor) {
-      document.addEventListener('mousemove', (e) => { cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px'; });
-      interactive.forEach(el => {
-        el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-        el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
-      });
-    }
-
     // Smooth anchor scroll
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
@@ -532,37 +504,29 @@
       });
     });
 
-    // EmailJS Form Submission - WITH CORRECT VARIABLES MATCHING YOUR TEMPLATE
+    // EmailJS Form Submission
     if(contactForm) {
       contactForm.addEventListener('submit', async function(e) {
         e.preventDefault();
         
-        // Get form values
         const name = document.getElementById('userName').value;
         const email = document.getElementById('userEmail').value;
         const message = document.getElementById('userMessage').value;
         
-        // Save original button text
         const originalText = submitBtn.innerHTML;
-        
-        // Show loading state
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
         submitBtn.disabled = true;
         
-        // Prepare template parameters - MATCHING YOUR EXACT TEMPLATE VARIABLES
-        // Your template uses {{name}}, {{email}}, and {{message}}
         const templateParams = {
-          name: name,           // Matches {{name}} in your template
-          email: email,         // Matches {{email}} in your template  
-          message: message      // Matches the message variable in your content
+          name: name,
+          email: email,
+          message: message
         };
         
         try {
-          // Send email using EmailJS with YOUR credentials
           const response = await emailjs.send('service_mmoe6g5', 'template_rgoisa7', templateParams);
           
           if(response.status === 200) {
-            // Success!
             formMessage.className = 'form-message success';
             formMessage.innerHTML = '✓ Message sent successfully! We\'ll get back to you soon.';
             contactForm.reset();
@@ -574,11 +538,8 @@
           formMessage.className = 'form-message error';
           formMessage.innerHTML = '✗ Sorry, something went wrong. Please email us directly at ediblefarms000@gmail.com';
         } finally {
-          // Reset button
           submitBtn.innerHTML = originalText;
           submitBtn.disabled = false;
-          
-          // Hide message after 5 seconds
           setTimeout(() => {
             formMessage.style.display = 'none';
           }, 5000);
