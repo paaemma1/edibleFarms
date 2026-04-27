@@ -91,19 +91,9 @@
       }
     }
 
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-    }
-
     @keyframes float {
       0%, 100% { transform: translateY(0px); }
       50% { transform: translateY(-10px); }
-    }
-
-    @keyframes shimmer {
-      0% { background-position: -200% 0; }
-      100% { background-position: 200% 0; }
     }
 
     /* header */
@@ -228,7 +218,7 @@
     .badge-item:hover { transform: translateX(8px); border-bottom-color: var(--accent-green); }
     .badge-item:last-child { border: none; }
 
-    /* sections with fade-in */
+    /* sections */
     section { padding: 100px 8%; }
     .section-title {
       font-family: 'Cormorant Garamond', serif;
@@ -259,7 +249,6 @@
     .service-card:hover { transform: translateY(-12px) scale(1.02); background: rgba(37,211,102,0.12); border-color: var(--accent-green); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
     .service-icon { font-size: 3rem; background: linear-gradient(135deg, var(--accent-green), var(--accent-cyan)); background-clip: text; -webkit-background-clip: text; color: transparent; margin-bottom: 1rem; transition: transform 0.3s; }
     .service-card:hover .service-icon { transform: scale(1.1); }
-    .service-card h3 { font-size: 1.4rem; margin-bottom: 0.8rem; }
 
     /* about stats */
     .about-grid {
@@ -403,6 +392,48 @@
     }
     .social-icons a:hover { background: linear-gradient(135deg, var(--accent-green), var(--accent-cyan)); color: #061d18; transform: translateY(-6px) scale(1.1); border-color: var(--accent-green); box-shadow: 0 10px 25px rgba(37,211,102,0.4); }
     
+    /* Newsletter styling */
+    .newsletter-wrapper {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    .newsletter-wrapper input {
+      flex: 1;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 0.7rem 1rem;
+      border-radius: 40px;
+      color: white;
+      font-family: inherit;
+      transition: all 0.3s;
+    }
+    .newsletter-wrapper input:focus {
+      outline: none;
+      border-color: var(--accent-green);
+      background: rgba(255,255,255,0.15);
+    }
+    .newsletter-wrapper button {
+      background: linear-gradient(135deg, var(--accent-green), var(--accent-cyan));
+      border: none;
+      border-radius: 40px;
+      padding: 0.7rem 1.2rem;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.3s;
+      color: #061d18;
+      font-weight: bold;
+    }
+    .newsletter-wrapper button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(37,211,102,0.4);
+    }
+    .newsletter-message {
+      font-size: 0.7rem;
+      margin-top: 0.5rem;
+      transition: all 0.3s;
+    }
+    
     .copyright { text-align: center; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.8rem; color: #9ca3af; }
 
     /* Responsive */
@@ -421,6 +452,7 @@
       .btn { justify-content: center; }
       section { padding: 60px 5%; }
       .logo-container { transform: translateY(10px); }
+      .newsletter-wrapper { flex-direction: column; }
     }
 
     /* scroll reveal animations */
@@ -570,7 +602,14 @@
     <div class="footer-col"><h4>Edible Farms</h4><p style="font-size:0.85rem;">Premium catfish, raised naturally. Local, responsible, and delicious.</p></div>
     <div class="footer-col"><h4>Quick Links</h4><a href="#home">Home</a><a href="#about">About</a><a href="#services">Services</a><a href="#contact">Contact</a></div>
     <div class="footer-col"><h4>Support</h4><a href="#bulk">Bulk Orders</a><a href="#">Shipping Policy</a><a href="#">Returns</a><a href="#">FAQs</a></div>
-    <div class="footer-col"><h4>Newsletter</h4><p style="font-size:0.8rem;">Get fresh updates & recipes.</p><div style="display:flex; margin-top:0.5rem;"><input type="email" placeholder="Your email" style="background:rgba(255,255,255,0.1); border:none; padding:0.6rem; border-radius:30px; width:100%;"><button style="background:linear-gradient(135deg, #25d366, #00e5ff); border:none; border-radius:30px; padding:0 1rem; margin-left:0.5rem; cursor:pointer;">→</button></div></div>
+    <div class="footer-col"><h4>Newsletter</h4>
+      <p style="font-size:0.8rem;">Get fresh updates & recipes.</p>
+      <div class="newsletter-wrapper">
+        <input type="email" id="newsletterEmail" placeholder="Your email">
+        <button id="newsletterBtn">→</button>
+      </div>
+      <div id="newsletterMessage" class="newsletter-message"></div>
+    </div>
   </div>
   <div class="copyright">© 2025 Edible Farms — Fresh. Local. Responsible. All rights reserved.</div>
 </footer>
@@ -585,6 +624,9 @@
     const contactForm = document.getElementById('contactForm');
     const formMessage = document.getElementById('formMessage');
     const submitBtn = document.getElementById('submitBtn');
+    const newsletterBtn = document.getElementById('newsletterBtn');
+    const newsletterEmail = document.getElementById('newsletterEmail');
+    const newsletterMessage = document.getElementById('newsletterMessage');
 
     emailjs.init("9M02Bt8C6vjgHs8Ty");
 
@@ -601,6 +643,7 @@
       });
     }
 
+    // Contact Form Submission
     if(contactForm) {
       contactForm.addEventListener('submit', async function(e) {
         e.preventDefault();
@@ -629,6 +672,61 @@
           submitBtn.innerHTML = originalText;
           submitBtn.disabled = false;
           setTimeout(() => { formMessage.style.display = 'none'; }, 5000);
+        }
+      });
+    }
+
+    // Newsletter Signup - Now Working!
+    if(newsletterBtn) {
+      newsletterBtn.addEventListener('click', async function() {
+        const email = newsletterEmail.value.trim();
+        
+        if(!email) {
+          newsletterMessage.style.color = '#ffb3b3';
+          newsletterMessage.innerHTML = '✗ Please enter your email address';
+          setTimeout(() => { newsletterMessage.innerHTML = ''; }, 3000);
+          return;
+        }
+        
+        if(!email.includes('@') || !email.includes('.')) {
+          newsletterMessage.style.color = '#ffb3b3';
+          newsletterMessage.innerHTML = '✗ Please enter a valid email address';
+          setTimeout(() => { newsletterMessage.innerHTML = ''; }, 3000);
+          return;
+        }
+        
+        const originalText = newsletterBtn.innerHTML;
+        newsletterBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+        newsletterBtn.disabled = true;
+        
+        // Send newsletter signup notification
+        const templateParams = {
+          name: "Newsletter Subscriber",
+          email: email,
+          message: `📧 New newsletter subscription from: ${email}\n\nThis user has subscribed to your newsletter. Add them to your mailing list!`
+        };
+        
+        try {
+          const response = await emailjs.send('service_mmoe6g5', 'template_rgoisa7', templateParams);
+          if(response.status === 200) {
+            newsletterMessage.style.color = '#d4f5e0';
+            newsletterMessage.innerHTML = '✓ Thanks for subscribing! You\'ll hear from us soon.';
+            newsletterEmail.value = '';
+          } else throw new Error('Failed');
+        } catch(error) {
+          newsletterMessage.style.color = '#ffb3b3';
+          newsletterMessage.innerHTML = '✗ Something went wrong. Please try again later.';
+        } finally {
+          newsletterBtn.innerHTML = originalText;
+          newsletterBtn.disabled = false;
+          setTimeout(() => { newsletterMessage.innerHTML = ''; }, 5000);
+        }
+      });
+      
+      // Allow Enter key to submit newsletter
+      newsletterEmail.addEventListener('keypress', function(e) {
+        if(e.key === 'Enter') {
+          newsletterBtn.click();
         }
       });
     }
