@@ -47,26 +47,6 @@
       overflow-x: hidden;
     }
 
-    /* Custom Cursor - Premium */
-    .custom-cursor {
-      width: 40px;
-      height: 40px;
-      border: 2px solid var(--accent-green);
-      border-radius: 50%;
-      position: fixed;
-      pointer-events: none;
-      z-index: 9999;
-      transition: transform 0.2s, width 0.3s, height 0.3s, background 0.3s;
-      transform: translate(-50%, -50%);
-      backdrop-filter: blur(2px);
-    }
-    .custom-cursor.hover {
-      width: 60px;
-      height: 60px;
-      background: rgba(37,211,102,0.15);
-      border-color: var(--accent-cyan);
-    }
-
     /* Animations */
     @keyframes fadeInUp {
       from { opacity: 0; transform: translateY(50px); }
@@ -95,14 +75,6 @@
     @keyframes shimmer {
       0% { background-position: -200% 0; }
       100% { background-position: 200% 0; }
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 0.3; }
-      50% { opacity: 0.8; }
-    }
-    @keyframes rotate {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
     }
 
     /* Header */
@@ -726,9 +698,6 @@
       .trust-badges {
         width: 100%;
       }
-      .custom-cursor {
-        display: none;
-      }
     }
 
     @media (max-width: 600px) {
@@ -763,8 +732,6 @@
   </style>
 </head>
 <body>
-
-<div class="custom-cursor"></div>
 
 <header class="main-header" id="mainHeader">
   <div class="logo-container">
@@ -840,10 +807,10 @@
   <h2 class="section-title reveal">From Pond to <span>Plate</span></h2>
   <div class="gallery-grid">
     <div class="gallery-item reveal"><img src="https://www.shutterstock.com/image-photo/some-white-catfish-popularly-known-600nw-2304531177.jpg" alt="Fresh catfish"><div class="gallery-overlay">Fresh Catch</div></div>
-    <div class="gallery-item reveal" data-delay="100"><img src="https://www.aquaculturealliance.org/wp-content/uploads/2009/09/ROGERSpic1-960x450.jpg" alt="Farm pond"><div class="gallery-overlay">Natural Ponds</div></div>
-    <div class="gallery-item reveal" data-delay="200"><img src="https://fishtank.com.ng/wp-content/uploads/2020/12/DSC_5368-1-scaled.jpg" alt="Grilled catfish"><div class="gallery-overlay">Premium Fillets</div></div>
-    <div class="gallery-item reveal" data-delay="300"><img src="https://emeraldtransportationsolutions.com/wp-content/uploads/2022/05/0ylzNNplW9qe0fPfGGeG9kHnnRZvqZSx1655986652.jpg" alt="Delivery"><div class="gallery-overlay">Farm to Table</div></div>
     <div class="gallery-item reveal" data-delay="400"><img src="https://www.fao.org/fishery/services/storage/fs/fishery/images/culturedspecies//clarias/12swam-pond-clarias-harvest-Santchou.jpg" alt="Harvest"><div class="gallery-overlay">Morning Harvest</div></div>
+    <div class="gallery-item reveal" data-delay="100"><img src="https://www.aquaculturealliance.org/wp-content/uploads/2009/09/ROGERSpic1-960x450.jpg" alt="Farm pond"><div class="gallery-overlay">Natural Ponds</div></div>
+    <div class="gallery-item reveal" data-delay="300"><img src="https://emeraldtransportationsolutions.com/wp-content/uploads/2022/05/0ylzNNplW9qe0fPfGGeG9kHnnRZvqZSx1655986652.jpg" alt="Delivery"><div class="gallery-overlay">Farm to Table</div></div>
+    <div class="gallery-item reveal" data-delay="200"><img src="https://fishtank.com.ng/wp-content/uploads/2020/12/DSC_5368-1-scaled.jpg" alt="Grilled catfish"><div class="gallery-overlay">Premium Fillets</div></div>
     <div class="gallery-item reveal" data-delay="500"><img src="https://cheflolaskitchen.com/wp-content/uploads/2025/07/Catfish-Steak.jpg" alt="Chef"><div class="gallery-overlay">Chef Approved</div></div>
   </div>
 </section>
@@ -895,20 +862,6 @@
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
   AOS.init({ duration: 1000, once: true, offset: 100 });
-
-  // Custom cursor
-  const cursor = document.querySelector('.custom-cursor');
-  const interactiveElements = document.querySelectorAll('a, .btn, .service-card, .gallery-item, .badge-item, .stat, button');
-  document.addEventListener('mousemove', (e) => {
-    if (cursor) {
-      cursor.style.left = e.clientX + 'px';
-      cursor.style.top = e.clientY + 'px';
-    }
-  });
-  interactiveElements.forEach(el => {
-    el.addEventListener('mouseenter', () => cursor?.classList.add('hover'));
-    el.addEventListener('mouseleave', () => cursor?.classList.remove('hover'));
-  });
 
   // Parallax effect
   const heroBg = document.getElementById('heroBg');
