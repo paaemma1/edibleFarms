@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  
+  <title>Edible Farms | Bulk Order Request | Wholesale Catfish</title>
+  <meta name="description" content="Request bulk catfish orders for your restaurant, hotel, or catering business. Volume discounts, weekly delivery, farm-direct pricing." />
+  <meta name="keywords" content="bulk catfish, wholesale catfish, restaurant supply, catfish bulk order, Ghana catfish" />
+  <meta name="robots" content="index, follow" />
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --primary-dark: #061d18;
+      --accent-green: #25d366;
+      --accent-gold: #d4af37;
+      --accent-cyan: #00e5ff;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #061d18 0%, #0a2a22 100%);
+      color: white;
+      line-height: 1.5;
+      min-height: 100vh;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+    }
+
+    /* Header */
+    .main-header {
+      position: fixed; top: 0; width: 100%; padding: 0 6%; height: 85px;
+      display: flex; align-items: center; justify-content: space-between;
+      z-index: 1100; transition: all 0.4s; background: transparent;
+    }
+    .main-header.scrolled {
+      background: rgba(6,29,24,0.95); backdrop-filter: blur(20px); height: 70px;
+      border-bottom: 1px solid rgba(37,211,102,0.3);
+    }
+    .logo-img { height: 220px; width: auto; filter: brightness(0) invert(1); transition: 0.3s; }
+    .main-header.scrolled .logo-img { height: 80px; }
+    .nav-links { display: flex; gap: 2.5rem; }
+    .nav-links a {
+      color: #f1f5f9; text-decoration: none; font-weight: 500; transition: 0.3s; position: relative;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -6px; left: 0; width: 0; height: 2px;
+      background: linear-gradient(90deg, var(--accent-green), var(--accent-gold)); transition: width 0.3s;
+    }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-links a:hover { color: var(--accent-green); }
+    .nav-links .active { color: var(--accent-green); }
+    .nav-links .active::after { width: 100%; }
+
+    .menu-toggle { display: none; font-size: 2rem; cursor: pointer; color: white; }
+    .mobile-nav {
+      position: fixed; inset: 0; background: rgba(3,20,16,0.98); backdrop-filter: blur(28px);
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2rem;
+      transform: translateX(100%); transition: transform 0.4s; z-index: 1050;
+    }
+    .mobile-nav.active { transform: translateX(0); }
+    .mobile-nav a { font-size: 1.5rem; font-weight: 600; color: white; text-decoration: none; }
+    .mobile-nav a:hover { color: var(--accent-green); }
+
+    /* Bulk Order Hero */
+    .bulk-hero {
+      padding: 140px 8% 60px;
+      text-align: center;
+      background: linear-gradient(135deg, rgba(6,29,24,0.9), rgba(0,229,255,0.05));
+      border-bottom: 1px solid rgba(37,211,102,0.2);
+    }
+    .bulk-hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .bulk-hero h1 span {
+      background: linear-gradient(135deg, var(--accent-green), var(--accent-cyan));
+      background-clip: text; -webkit-background-clip: text; color: transparent;
+    }
+    .bulk-hero p {
+      max-width: 700px; margin: 0 auto; color: #cbd5e1; font-size: 1.1rem;
+    }
+
+    /* Form Section */
+    .form-section {
+      padding: 60px 8% 100px;
+    }
+    .form-container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: rgba(255,255,255,0.03);
+      backdrop-filter: blur(12px);
+      border-radius: 40px;
+      padding: 2.5rem;
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+    }
+    .form-title {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .form-title h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+    .form-title p {
+      color: #cbd5e1;
+      font-size: 0.9rem;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      margin-bottom: 1rem;
+    }
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent-green);
+    }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%;
+      padding: 0.9rem 1rem;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 20px;
+      color: white;
+      font-family: inherit;
+      font-size: 0.95rem;
+      transition: all 0.3s;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      outline: none;
+      border-color: var(--accent-green);
+      background: rgba(255,255,255,0.12);
+      transform: scale(1.01);
+    }
+    .form-group input::placeholder, .form-group textarea::placeholder {
+      color: rgba(255,255,255,0.4);
+    }
+    .submit-btn {
+      background: linear-gradient(135deg, var(--accent-green), var(--accent-cyan));
+      border: none;
+      padding: 1rem;
+      border-radius: 50px;
+      font-weight: 700;
+      cursor: pointer;
+      width: 100%;
+      color: #061d18;
+      font-size: 1.1rem;
+      transition: all 0.3s;
+      margin-top: 0.5rem;
+    }
+    .submit-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(37,211,102,0.4);
+    }
+    .form-message {
+      margin-top: 1.2rem;
+      padding: 0.8rem;
+      border-radius: 16px;
+      text-align: center;
+      font-size: 0.85rem;
+      display: none;
+    }
+    .form-message.success {
+      background: rgba(37,211,102,0.2);
+      border: 1px solid var(--accent-green);
+      color: #d4f5e0;
+      display: block;
+    }
+    .form-message.error {
+      background: rgba(255,70,70,0.2);
+      border: 1px solid #ff4646;
+      color: #ffb3b3;
+      display: block;
+    }
+
+    /* Pricing Info Cards */
+    .pricing-section {
+      padding: 0 8% 80px;
+    }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .pricing-card {
+      background: rgba(255,255,255,0.03);
+      border-radius: 28px;
+      padding: 1.8rem;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: all 0.3s;
+    }
+    .pricing-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--accent-green);
+      background: rgba(37,211,102,0.05);
+    }
+    .pricing-card i {
+      font-size: 2.5rem;
+      background: linear-gradient(135deg, var(--accent-green), var(--accent-cyan));
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      margin-bottom: 1rem;
+    }
+    .pricing-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+    .pricing-card p {
+      color: #cbd5e1;
+      font-size: 0.85rem;
+    }
+
+    /* Contact Info */
+    .contact-info-bar {
+      background: rgba(37,211,102,0.08);
+      border-radius: 30px;
+      padding: 1.5rem;
+      margin-top: 2rem;
+      text-align: center;
+      border: 1px solid rgba(37,211,102,0.2);
+    }
+    .contact-info-bar p {
+      margin: 0.3rem 0;
+    }
+    .contact-info-bar i {
+      color: var(--accent-green);
+      margin-right: 8px;
+    }
+    .contact-info-bar a {
+      color: white;
+      text-decoration: none;
+    }
+    .contact-info-bar a:hover {
+      color: var(--accent-green);
+    }
+
+    /* Footer */
+    footer {
+      background: linear-gradient(135deg, #02120e, #031a15);
+      padding: 3rem 8% 2rem;
+      border-top: 1px solid rgba(37,211,102,0.2);
+      margin-top: 60px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    .footer-col h4 { margin-bottom: 1rem; font-size: 1.1rem; background: linear-gradient(135deg, var(--accent-green), var(--accent-gold)); background-clip: text; -webkit-background-clip: text; color: transparent; }
+    .footer-col a { display: block; color: #cbd5e1; text-decoration: none; margin-bottom: 0.5rem; font-size: 0.9rem; transition: 0.3s; }
+    .footer-col a:hover { color: var(--accent-green); transform: translateX(5px); }
+    .copyright { text-align: center; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.8rem; color: #9ca3af; }
+
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .menu-toggle { display: block; }
+      .logo-img { height: 150px; }
+      .main-header.scrolled .logo-img { height: 60px; }
+      .form-row { grid-template-columns: 1fr; }
+      .form-container { padding: 1.5rem; margin: 0 1rem; }
+    }
+    @media (max-width: 600px) {
+      .bulk-hero { padding: 120px 5% 40px; }
+      .form-section { padding: 40px 5% 60px; }
+      .pricing-section { padding: 0 5% 60px; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="main-header" id="mainHeader">
+  <div class="logo-container">
+    <img src="logo.png" alt="Edible Farms" class="logo-img" loading="eager">
+  </div>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="index.html#services">Services</a>
+    <a href="index.html#about">About</a>
+    <a href="index.html#gallery">Gallery</a>
+    <a href="index.html#contact">Contact</a>
+    <a href="bulk-order.html" class="active">Bulk Orders</a>
+  </div>
+  <div class="menu-toggle" id="menuToggle">☰</div>
+</header>
+
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html">Home</a>
+  <a href="index.html#services">Services</a>
+  <a href="index.html#about">About</a>
+  <a href="index.html#gallery">Gallery</a>
+  <a href="index.html#contact">Contact</a>
+  <a href="bulk-order.html">Bulk Orders</a>
+</div>
+
+<!-- Bulk Order Hero -->
+<section class="bulk-hero" data-aos="fade-up">
+  <h1>Wholesale & <span>Bulk Orders</span></h1>
+  <p>Partner with Edible Farms for reliable, premium catfish supply. Volume discounts, flexible delivery schedules, and farm-direct pricing for restaurants, hotels, and catering businesses.</p>
+</section>
+
+<!-- Pricing Info Cards -->
+<section class="pricing-section" data-aos="fade-up" data-aos-delay="100">
+  <div class="pricing-grid">
+    <div class="pricing-card">
+      <i class="fas fa-tag"></i>
+      <h3>Volume Discounts</h3>
+      <p>Better pricing for larger quantities. Ask about our tiered pricing structure.</p>
+    </div>
+    <div class="pricing-card">
+      <i class="fas fa-truck"></i>
+      <h3>Weekly Delivery</h3>
+      <p>Consistent, reliable delivery schedule tailored to your business needs.</p>
+    </div>
+    <div class="pricing-card">
+      <i class="fas fa-leaf"></i>
+      <h3>Farm Direct</h3>
+      <p>No middlemen. Fresh from our ponds directly to your kitchen.</p>
+    </div>
+    <div class="pricing-card">
+      <i class="fas fa-cut"></i>
+      <h3>Custom Processing</h3>
+      <p>Whole fish, fillets, steaks, or value-added cuts - you choose.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Bulk Order Form -->
+<section class="form-section" id="orderForm">
+  <div class="form-container" data-aos="fade-up" data-aos-delay="200">
+    <div class="form-title">
+      <h2>Request a <span style="color: var(--accent-green);">Quote</span></h2>
+      <p>Fill out the form below and we'll get back to you within 24 hours</p>
+    </div>
+
+    <form id="bulkOrderForm">
+      <div class="form-row">
+        <div class="form-group">
+          <label><i class="fas fa-building"></i> Business/Restaurant Name *</label>
+          <input type="text" id="businessName" placeholder="e.g., Ocean View Restaurant" required>
+        </div>
+        <div class="form-group">
+          <label><i class="fas fa-user"></i> Contact Person *</label>
+          <input type="text" id="contactPerson" placeholder="Full name" required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label><i class="fas fa-envelope"></i> Email Address *</label>
+          <input type="email" id="bulkEmail" placeholder="you@example.com" required>
+        </div>
+        <div class="form-group">
+          <label><i class="fas fa-phone"></i> Phone Number *</label>
+          <input type="tel" id="bulkPhone" placeholder="+233 XX XXX XXXX" required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label><i class="fas fa-weight-hanging"></i> Estimated Quantity *</label>
+          <select id="quantity" required>
+            <option value="">Select quantity range</option>
+            <option value="25-50 kg (approx 25-50 fish)">25-50 kg (small business)</option>
+            <option value="50-100 kg (approx 50-100 fish)">50-100 kg (restaurant weekly)</option>
+            <option value="100-250 kg (approx 100-250 fish)">100-250 kg (medium restaurant)</option>
+            <option value="250-500 kg (approx 250-500 fish)">250-500 kg (large restaurant/hotel)</option>
+            <option value="500-1000 kg (approx 500-1000 fish)">500-1000 kg (multiple locations)</option>
+            <option value="1000+ kg">1000+ kg (call for custom pricing)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label><i class="fas fa-calendar-alt"></i> Delivery Frequency *</label>
+          <select id="frequency" required>
+            <option value="">Select frequency</option>
+            <option value="One-time order">One-time order (trial)</option>
+            <option value="Weekly">Weekly - every week</option>
+            <option value="Bi-weekly">Bi-weekly - every 2 weeks</option>
+            <option value="Monthly">Monthly - once a month</option>
+            <option value="Custom schedule">Custom schedule (discuss)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label><i class="fas fa-calendar-day"></i> Preferred First Delivery Date *</label>
+          <input type="date" id="deliveryDate" required>
+        </div>
+        <div class="form-group">
+          <label><i class="fas fa-utensils"></i> Processing Preference *</label>
+          <select id="processing" required>
+            <option value="">Select option</option>
+            <option value="Whole fish (fresh)">Whole fish (fresh) - best for restaurants</option>
+            <option value="Whole fish (frozen)">Whole fish (frozen) - longer shelf life</option>
+            <option value="Fillets (boneless)">Fillets (boneless) - ready to cook</option>
+            <option value="Steaks (cut portions)">Steaks (cut portions) - uniform sizes</option>
+            <option value="Mixed (specify in notes)">Mixed (please specify in notes)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label><i class="fas fa-pen"></i> Special Instructions or Questions</label>
+        <textarea id="specialRequests" rows="3" placeholder="Any specific requirements, delivery instructions, or questions about our products..."></textarea>
+      </div>
+
+      <button type="submit" class="submit-btn" id="bulkSubmitBtn">
+        <i class="fas fa-paper-plane"></i> Submit Bulk Order Request
+      </button>
+      <div id="bulkFormMessage" class="form-message"></div>
+    </form>
+
+    <!-- Direct Contact Information -->
+    <div class="contact-info-bar">
+      <p><i class="fas fa-phone-alt"></i> Call us directly: <a href="tel:+233546600063">+233 54 660 0063</a></p>
+      <p><i class="fas fa-envelope"></i> Email: <a href="mailto:ediblefarms000@gmail.com">ediblefarms000@gmail.com</a></p>
+      <p><i class="fab fa-whatsapp"></i> WhatsApp: <a href="https://wa.me/233546600063">+233 54 660 0063</a></p>
+      <p><i class="fas fa-clock"></i> Business Hours: Mon-Fri 7am-6pm | Sat 9am-4pm</p>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h4>Edible Farms</h4>
+      <p style="font-size:0.85rem;">Premium catfish, raised naturally. Local, responsible, and delicious.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <a href="index.html">Home</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#services">Services</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Bulk Orders</h4>
+      <a href="bulk-order.html">Request Quote</a>
+      <a href="#">Volume Pricing</a>
+      <a href="#">Delivery Areas</a>
+      <a href="#">FAQs</a>
+    </div>
+    <div class="footer-col">
+      <h4>📚 Learn Aquaculture</h4>
+      <a href="https://www.fao.org/fishery/en/aquaculture" target="_blank">FAO Aquaculture (UN)</a>
+      <a href="https://thefishsite.com/" target="_blank">The Fish Site</a>
+      <a href="https://www.was.org/" target="_blank">World Aquaculture Society</a>
+      <a href="https://mofad.gov.gh/" target="_blank">Ghana Ministry of Fisheries</a>
+    </div>
+  </div>
+  <div class="copyright">© 2025 Edible Farms — Fresh. Local. Responsible. All rights reserved.</div>
+</footer>
+
+<script>
+  AOS.init({ duration: 800, once: true, offset: 50 });
+
+  (function() {
+    const header = document.getElementById('mainHeader');
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileNav = document.getElementById('mobileNav');
+    const bulkOrderForm = document.getElementById('bulkOrderForm');
+    const bulkFormMessage = document.getElementById('bulkFormMessage');
+    const bulkSubmitBtn = document.getElementById('bulkSubmitBtn');
+
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    if(menuToggle && mobileNav) {
+      menuToggle.addEventListener('click', () => mobileNav.classList.toggle('active'));
+      mobileNav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => mobileNav.classList.remove('active')));
+      document.addEventListener('click', (e) => {
+        if(mobileNav.classList.contains('active') && !mobileNav.contains(e.target) && e.target !== menuToggle)
+          mobileNav.classList.remove('active');
+      });
+    }
+
+    // Initialize EmailJS
+    emailjs.init("9M02Bt8C6vjgHs8Ty");
+
+    // Bulk Order Form Submission
+    if(bulkOrderForm) {
+      bulkOrderForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const businessName = document.getElementById('businessName').value;
+        const contactPerson = document.getElementById('contactPerson').value;
+        const email = document.getElementById('bulkEmail').value;
+        const phone = document.getElementById('bulkPhone').value;
+        const quantity = document.getElementById('quantity').value;
+        const frequency = document.getElementById('frequency').value;
+        const deliveryDate = document.getElementById('deliveryDate').value;
+        const processing = document.getElementById('processing').value;
+        const specialRequests = document.getElementById('specialRequests').value;
+        
+        const originalText = bulkSubmitBtn.innerHTML;
+        bulkSubmitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting Request...';
+        bulkSubmitBtn.disabled = true;
+        
+        // Format the message for email
+        const formattedDate = deliveryDate ? new Date(deliveryDate).toLocaleDateString() : 'Not specified';
+        const messageContent = `🛒 NEW BULK ORDER REQUEST - URGENT 🛒
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📋 BUSINESS INFORMATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Business/Restaurant: ${businessName}
+Contact Person: ${contactPerson}
+Email: ${email}
+Phone: ${phone}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📦 ORDER DETAILS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Quantity: ${quantity}
+Delivery Frequency: ${frequency}
+First Delivery Date: ${formattedDate}
+Processing Preference: ${processing}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📝 SPECIAL REQUESTS / NOTES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+${specialRequests || 'None specified'}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+⏰ Please respond within 24 hours
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Sent from Edible Farms Bulk Order Form`;
+        
+        const templateParams = { 
+          name: contactPerson, 
+          email: email, 
+          message: messageContent 
+        };
+        
+        try {
+          const response = await emailjs.send('service_mmoe6g5', 'template_rgoisa7', templateParams);
+          if(response.status === 200) {
+            bulkFormMessage.className = 'form-message success';
+            bulkFormMessage.innerHTML = '✓ Bulk order request submitted successfully! We will contact you within 24 hours with pricing and availability.';
+            bulkOrderForm.reset();
+          } else {
+            throw new Error('Failed');
+          }
+        } catch(error) {
+          bulkFormMessage.className = 'form-message error';
+          bulkFormMessage.innerHTML = '✗ Submission failed. Please call us directly at +233 54 660 0063 or email ediblefarms000@gmail.com';
+        } finally {
+          bulkSubmitBtn.innerHTML = originalText;
+          bulkSubmitBtn.disabled = false;
+          setTimeout(() => { bulkFormMessage.style.display = 'none'; }, 8000);
+        }
+      });
+    }
+  })();
+</script>
+</body>
+</html>
