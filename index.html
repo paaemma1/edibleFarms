@@ -257,6 +257,7 @@
       gap: 3rem;
       align-items: center;
     }
+    .about-text p { margin-bottom: 1.2rem; color: #e2e8f0; line-height: 1.6; }
     .about-stats {
       display: flex;
       gap: 1.5rem;
@@ -331,6 +332,77 @@
     }
     .gallery-item:hover .gallery-overlay { transform: translateY(0); }
 
+    /* Bulk Order Form - New */
+    .bulk-form-section {
+      max-width: 800px;
+      margin: 0 auto;
+      background: rgba(255,255,255,0.03);
+      backdrop-filter: blur(12px);
+      border-radius: 32px;
+      padding: 2.5rem;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .bulk-form-group {
+      margin-bottom: 1.2rem;
+    }
+    .bulk-form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--accent-green);
+    }
+    .bulk-form-group input, .bulk-form-group select, .bulk-form-group textarea {
+      width: 100%;
+      padding: 0.9rem;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 16px;
+      color: white;
+      font-family: inherit;
+      transition: all 0.3s;
+    }
+    .bulk-form-group input:focus, .bulk-form-group select:focus, .bulk-form-group textarea:focus {
+      outline: none;
+      border-color: var(--accent-green);
+      background: rgba(255,255,255,0.12);
+      transform: scale(1.01);
+    }
+    .bulk-form-group input::placeholder, .bulk-form-group textarea::placeholder {
+      color: rgba(255,255,255,0.4);
+    }
+    .bulk-submit-btn {
+      background: linear-gradient(135deg, var(--accent-green), var(--accent-cyan));
+      border: none;
+      padding: 1rem;
+      border-radius: 40px;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
+      color: #061d18;
+      font-size: 1rem;
+      transition: all 0.3s;
+      margin-top: 0.5rem;
+    }
+    .bulk-submit-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(37,211,102,0.4);
+    }
+    @media (max-width: 600px) {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+      .bulk-form-section {
+        padding: 1.5rem;
+      }
+    }
+
     /* contact */
     .contact-grid {
       display: grid;
@@ -392,7 +464,6 @@
     }
     .social-icons a:hover { background: linear-gradient(135deg, var(--accent-green), var(--accent-cyan)); color: #061d18; transform: translateY(-6px) scale(1.1); border-color: var(--accent-green); box-shadow: 0 10px 25px rgba(37,211,102,0.4); }
     
-    /* Aquaculture Resources Links */
     .resources-list {
       display: flex;
       flex-direction: column;
@@ -411,27 +482,12 @@
       font-size: 0.85rem;
       border: 1px solid rgba(37,211,102,0.2);
     }
-    .resource-link i {
-      font-size: 1rem;
-      color: var(--accent-green);
-      transition: transform 0.3s;
-    }
-    .resource-link:hover {
-      background: linear-gradient(135deg, rgba(37,211,102,0.2), rgba(0,229,255,0.1));
-      transform: translateX(5px);
-      border-color: var(--accent-green);
-      color: white;
-    }
-    .resource-link:hover i {
-      transform: scale(1.1);
-    }
-    .resource-label {
-      font-weight: 500;
-    }
+    .resource-link i { font-size: 1rem; color: var(--accent-green); transition: transform 0.3s; }
+    .resource-link:hover { background: linear-gradient(135deg, rgba(37,211,102,0.2), rgba(0,229,255,0.1)); transform: translateX(5px); border-color: var(--accent-green); color: white; }
+    .resource-link:hover i { transform: scale(1.1); }
     
     .copyright { text-align: center; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.8rem; color: #9ca3af; }
 
-    /* Responsive */
     @media (max-width: 900px) {
       .nav-links { display: none; }
       .menu-toggle { display: block; }
@@ -447,15 +503,6 @@
       .btn { justify-content: center; }
       section { padding: 60px 5%; }
       .logo-container { transform: translateY(10px); }
-    }
-
-    /* scroll reveal animations */
-    [data-aos] {
-      opacity: 0;
-      transition-property: opacity, transform;
-    }
-    .aos-animate {
-      opacity: 1;
     }
   </style>
 </head>
@@ -529,10 +576,6 @@
         <div class="stat" data-aos="zoom-in" data-aos-delay="100"><div class="stat-number">🌱 Zero</div><div class="stat-label">Antibiotics or Hormones</div></div>
         <div class="stat" data-aos="zoom-in" data-aos-delay="200"><div class="stat-number">⭐ 4.9 ★</div><div class="stat-label">Customer Love</div></div>
       </div>
-      <div class="about-stats" style="margin-top: 0.5rem;">
-        <div class="stat" data-aos="zoom-in" data-aos-delay="300"><div class="stat-number">📦 Same-Week</div><div class="stat-label">Farm-to-Fork Delivery</div></div>
-        <div class="stat" data-aos="zoom-in" data-aos-delay="400"><div class="stat-number">🤝 Growing</div><div class="stat-label">With Our Community</div></div>
-      </div>
     </div>
     <div class="about-image" data-aos="fade-left">
       <img src="https://img.freepik.com/premium-photo/close-up-fresh-catfish-with-glossy-skins-bustling-fish-market-highlighting-texture-details-aquatic-creatures-against-vibrant-dynamic-background_765331-5015.jpg" alt="Fresh catfish at Edible Farms market" loading="lazy" style="width:100%; border-radius:28px;">
@@ -554,7 +597,82 @@
   <p style="text-align: center; margin-top: 2rem; opacity: 0.7;">Fresh harvest, sustainable ponds, and premium fillets — captured daily.</p>
 </section>
 
-<!-- Contact -->
+<!-- Bulk Orders Section with Dedicated Form -->
+<section id="bulk">
+  <h2 class="section-title" data-aos="fade-up">Bulk <span>Orders</span></h2>
+  <div class="bulk-form-section" data-aos="fade-up" data-aos-delay="100">
+    <p style="text-align: center; margin-bottom: 2rem; color: #cbd5e1;">Fill out the form below to request a bulk order. We'll get back to you within 24 hours with pricing and availability.</p>
+    <form id="bulkOrderForm">
+      <div class="form-row">
+        <div class="bulk-form-group">
+          <label>Business/Restaurant Name *</label>
+          <input type="text" id="businessName" placeholder="e.g., Ocean View Restaurant" required>
+        </div>
+        <div class="bulk-form-group">
+          <label>Contact Person *</label>
+          <input type="text" id="contactPerson" placeholder="Full name" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="bulk-form-group">
+          <label>Email Address *</label>
+          <input type="email" id="bulkEmail" placeholder="you@example.com" required>
+        </div>
+        <div class="bulk-form-group">
+          <label>Phone Number *</label>
+          <input type="tel" id="bulkPhone" placeholder="+233 XX XXX XXXX" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="bulk-form-group">
+          <label>Quantity Needed *</label>
+          <select id="quantity" required>
+            <option value="">Select quantity</option>
+            <option value="50-100 kg">50 - 100 kg</option>
+            <option value="100-250 kg">100 - 250 kg</option>
+            <option value="250-500 kg">250 - 500 kg</option>
+            <option value="500-1000 kg">500 - 1000 kg</option>
+            <option value="1000+ kg">1000+ kg (call for custom pricing)</option>
+          </select>
+        </div>
+        <div class="bulk-form-group">
+          <label>Delivery Frequency *</label>
+          <select id="frequency" required>
+            <option value="">Select frequency</option>
+            <option value="One-time order">One-time order</option>
+            <option value="Weekly">Weekly delivery</option>
+            <option value="Bi-weekly">Bi-weekly delivery</option>
+            <option value="Monthly">Monthly delivery</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="bulk-form-group">
+          <label>Preferred Delivery Date *</label>
+          <input type="date" id="deliveryDate" required>
+        </div>
+        <div class="bulk-form-group">
+          <label>Preferred Processing *</label>
+          <select id="processing" required>
+            <option value="">Select option</option>
+            <option value="Whole fish">Whole fish (fresh)</option>
+            <option value="Whole fish (frozen)">Whole fish (frozen)</option>
+            <option value="Fillets">Fillets (deboned)</option>
+            <option value="Steaks">Steaks (cut portions)</option>
+          </select>
+        </div>
+      </div>
+      <div class="bulk-form-group">
+        <label>Special Requests or Notes</label>
+        <textarea id="specialRequests" rows="3" placeholder="Any specific requirements, delivery instructions, or questions..."></textarea>
+      </div>
+      <button type="submit" class="bulk-submit-btn" id="bulkSubmitBtn">Submit Bulk Order Request →</button>
+    </form>
+    <div id="bulkFormMessage" class="form-message"></div>
+  </div>
+</section>
+
+<!-- Contact Section -->
 <section id="contact">
   <h2 class="section-title" data-aos="fade-up">Let's <span>Connect</span></h2>
   <div class="contact-grid">
@@ -572,25 +690,18 @@
     </div>
     <div class="contact-form" data-aos="fade-left">
       <form id="contactForm">
-        <input type="text" id="userName" name="name" placeholder="Your name" required>
-        <input type="email" id="userEmail" name="email" placeholder="Email address" required>
-        <textarea id="userMessage" name="message" rows="4" placeholder="Tell us about your order or inquiry..." required></textarea>
+        <input type="text" id="userName" placeholder="Your name" required>
+        <input type="email" id="userEmail" placeholder="Email address" required>
+        <textarea id="userMessage" rows="4" placeholder="Tell us about your order or inquiry..." required></textarea>
         <button type="submit" id="submitBtn">Send Message →</button>
       </form>
-      <div id="formMessage" class="form-message"></div>
+      <div id="contactFormMessage" class="form-message"></div>
       <p style="font-size: 0.7rem; text-align: center; margin-top: 0.8rem; opacity: 0.6;">✓ Messages are sent directly to <strong>ediblefarms000@gmail.com</strong></p>
     </div>
   </div>
 </section>
 
-<!-- Bulk Orders -->
-<section id="bulk" style="background: linear-gradient(125deg, #05231e, #02120e); border-radius: 40px; margin: 0 5% 60px; padding: 50px 5%; text-align: center;" data-aos="zoom-in">
-  <h3 style="font-family: 'Cormorant Garamond'; font-size: 2rem;">Volume discounts & custom contracts</h3>
-  <p style="margin: 1rem auto; max-width: 600px;">Partner with us for reliable supply. Weekly delivery, flexible quantities, farm-direct pricing.</p>
-  <a href="#contact" class="btn btn-primary" style="background: linear-gradient(135deg, #25d366, #00e5ff);">Request a Quote →</a>
-</section>
-
-<!-- Footer with Aquaculture Resources Links -->
+<!-- Footer -->
 <footer>
   <div class="footer-grid">
     <div class="footer-col"><h4>Edible Farms</h4><p style="font-size:0.85rem;">Premium catfish, raised naturally. Local, responsible, and delicious.</p></div>
@@ -628,8 +739,11 @@
     const menuToggle = document.getElementById('menuToggle');
     const mobileNav = document.getElementById('mobileNav');
     const contactForm = document.getElementById('contactForm');
-    const formMessage = document.getElementById('formMessage');
+    const contactFormMessage = document.getElementById('contactFormMessage');
     const submitBtn = document.getElementById('submitBtn');
+    const bulkOrderForm = document.getElementById('bulkOrderForm');
+    const bulkFormMessage = document.getElementById('bulkFormMessage');
+    const bulkSubmitBtn = document.getElementById('bulkSubmitBtn');
 
     emailjs.init("9M02Bt8C6vjgHs8Ty");
 
@@ -650,7 +764,6 @@
     if(contactForm) {
       contactForm.addEventListener('submit', async function(e) {
         e.preventDefault();
-        
         const name = document.getElementById('userName').value;
         const email = document.getElementById('userEmail').value;
         const message = document.getElementById('userMessage').value;
@@ -664,17 +777,58 @@
         try {
           const response = await emailjs.send('service_mmoe6g5', 'template_rgoisa7', templateParams);
           if(response.status === 200) {
-            formMessage.className = 'form-message success';
-            formMessage.innerHTML = '✓ Message sent successfully! We\'ll get back to you soon.';
+            contactFormMessage.className = 'form-message success';
+            contactFormMessage.innerHTML = '✓ Message sent successfully! We\'ll get back to you soon.';
             contactForm.reset();
           } else throw new Error('Failed');
         } catch(error) {
-          formMessage.className = 'form-message error';
-          formMessage.innerHTML = '✗ Sorry, something went wrong. Please email us directly at ediblefarms000@gmail.com';
+          contactFormMessage.className = 'form-message error';
+          contactFormMessage.innerHTML = '✗ Sorry, something went wrong. Please email us directly at ediblefarms000@gmail.com';
         } finally {
           submitBtn.innerHTML = originalText;
           submitBtn.disabled = false;
-          setTimeout(() => { formMessage.style.display = 'none'; }, 5000);
+          setTimeout(() => { contactFormMessage.style.display = 'none'; }, 5000);
+        }
+      });
+    }
+
+    // Bulk Order Form Submission
+    if(bulkOrderForm) {
+      bulkOrderForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const businessName = document.getElementById('businessName').value;
+        const contactPerson = document.getElementById('contactPerson').value;
+        const email = document.getElementById('bulkEmail').value;
+        const phone = document.getElementById('bulkPhone').value;
+        const quantity = document.getElementById('quantity').value;
+        const frequency = document.getElementById('frequency').value;
+        const deliveryDate = document.getElementById('deliveryDate').value;
+        const processing = document.getElementById('processing').value;
+        const specialRequests = document.getElementById('specialRequests').value;
+        
+        const originalText = bulkSubmitBtn.innerHTML;
+        bulkSubmitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+        bulkSubmitBtn.disabled = true;
+        
+        const message = `🛒 NEW BULK ORDER REQUEST 🛒\n\nBusiness: ${businessName}\nContact: ${contactPerson}\nEmail: ${email}\nPhone: ${phone}\n\n📦 Order Details:\nQuantity: ${quantity}\nFrequency: ${frequency}\nDelivery Date: ${deliveryDate}\nProcessing: ${processing}\n\n📝 Special Requests:\n${specialRequests || 'None'}`;
+        
+        const templateParams = { name: contactPerson, email: email, message: message };
+        
+        try {
+          const response = await emailjs.send('service_mmoe6g5', 'template_rgoisa7', templateParams);
+          if(response.status === 200) {
+            bulkFormMessage.className = 'form-message success';
+            bulkFormMessage.innerHTML = '✓ Bulk order request sent! We\'ll contact you within 24 hours.';
+            bulkOrderForm.reset();
+          } else throw new Error('Failed');
+        } catch(error) {
+          bulkFormMessage.className = 'form-message error';
+          bulkFormMessage.innerHTML = '✗ Submission failed. Please email us directly at ediblefarms000@gmail.com';
+        } finally {
+          bulkSubmitBtn.innerHTML = originalText;
+          bulkSubmitBtn.disabled = false;
+          setTimeout(() => { bulkFormMessage.style.display = 'none'; }, 5000);
         }
       });
     }
