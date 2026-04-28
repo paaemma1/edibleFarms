@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  
+  <title>Edible Farms | Frequently Asked Questions</title>
+  <meta name="description" content="Find answers to common questions about Edible Farms catfish products, ordering, delivery, and sustainability practices." />
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --primary-dark: #061d18;
+      --accent-green: #25d366;
+      --accent-gold: #d4af37;
+      --accent-cyan: #00e5ff;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #061d18 0%, #0a2a22 100%);
+      color: white;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* Header */
+    .main-header {
+      position: fixed; top: 0; width: 100%; padding: 0 6%; height: 85px;
+      display: flex; align-items: center; justify-content: space-between;
+      z-index: 1100; transition: all 0.4s; background: transparent;
+    }
+    .main-header.scrolled {
+      background: rgba(6,29,24,0.95); backdrop-filter: blur(20px); height: 70px;
+      border-bottom: 1px solid rgba(37,211,102,0.3);
+    }
+    .logo-img { height: 220px; width: auto; filter: brightness(0) invert(1); transition: 0.3s; }
+    .main-header.scrolled .logo-img { height: 80px; }
+    .nav-links { display: flex; gap: 2.5rem; }
+    .nav-links a {
+      color: #f1f5f9; text-decoration: none; font-weight: 500; transition: 0.3s; position: relative;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -6px; left: 0; width: 0; height: 2px;
+      background: linear-gradient(90deg, var(--accent-green), var(--accent-gold)); transition: width 0.3s;
+    }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-links a:hover { color: var(--accent-green); }
+    .menu-toggle { display: none; font-size: 2rem; cursor: pointer; color: white; }
+    .mobile-nav {
+      position: fixed; inset: 0; background: rgba(3,20,16,0.98); backdrop-filter: blur(28px);
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2rem;
+      transform: translateX(100%); transition: transform 0.4s; z-index: 1050;
+    }
+    .mobile-nav.active { transform: translateX(0); }
+    .mobile-nav a { font-size: 1.5rem; font-weight: 600; color: white; text-decoration: none; }
+    .mobile-nav a:hover { color: var(--accent-green); }
+
+    /* Page Hero */
+    .page-hero {
+      padding: 140px 8% 60px;
+      text-align: center;
+      background: linear-gradient(135deg, rgba(6,29,24,0.9), rgba(0,229,255,0.05));
+      border-bottom: 1px solid rgba(37,211,102,0.2);
+    }
+    .page-hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .page-hero h1 span {
+      background: linear-gradient(135deg, var(--accent-green), var(--accent-cyan));
+      background-clip: text; -webkit-background-clip: text; color: transparent;
+    }
+    .page-hero p {
+      max-width: 700px; margin: 0 auto; color: #cbd5e1;
+    }
+
+    /* FAQ Section */
+    .faq-section {
+      padding: 60px 8% 100px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .faq-item {
+      background: rgba(255,255,255,0.03);
+      backdrop-filter: blur(12px);
+      border-radius: 24px;
+      margin-bottom: 1.2rem;
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: all 0.3s;
+      overflow: hidden;
+    }
+    .faq-item:hover {
+      border-color: rgba(37,211,102,0.3);
+    }
+    .faq-question {
+      padding: 1.5rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: background 0.3s;
+    }
+    .faq-question:hover {
+      background: rgba(37,211,102,0.05);
+    }
+    .faq-question i {
+      color: var(--accent-green);
+      transition: transform 0.3s;
+      font-size: 1.2rem;
+    }
+    .faq-answer {
+      padding: 0 1.5rem 1.5rem 1.5rem;
+      color: #cbd5e1;
+      line-height: 1.7;
+      display: none;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .faq-answer.active {
+      display: block;
+    }
+    .faq-answer ul, .faq-answer ol {
+      margin: 0.5rem 0 0 1.5rem;
+    }
+    .faq-answer li {
+      margin-bottom: 0.3rem;
+    }
+    .contact-cta {
+      text-align: center;
+      margin-top: 3rem;
+      padding: 2rem;
+      background: rgba(37,211,102,0.08);
+      border-radius: 28px;
+      border: 1px solid rgba(37,211,102,0.2);
+    }
+    .contact-cta a {
+      color: var(--accent-green);
+      text-decoration: none;
+    }
+    .contact-cta a:hover {
+      text-decoration: underline;
+    }
+
+    /* Footer */
+    footer {
+      background: linear-gradient(135deg, #02120e, #031a15);
+      padding: 3rem 8% 2rem;
+      border-top: 1px solid rgba(37,211,102,0.2);
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    .footer-col h4 { margin-bottom: 1rem; font-size: 1.1rem; background: linear-gradient(135deg, var(--accent-green), var(--accent-gold)); background-clip: text; -webkit-background-clip: text; color: transparent; }
+    .footer-col a { display: block; color: #cbd5e1; text-decoration: none; margin-bottom: 0.5rem; font-size: 0.9rem; transition: 0.3s; }
+    .footer-col a:hover { color: var(--accent-green); transform: translateX(5px); }
+    .copyright { text-align: center; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.8rem; color: #9ca3af; }
+
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .menu-toggle { display: block; }
+      .logo-img { height: 150px; }
+      .main-header.scrolled .logo-img { height: 60px; }
+      .faq-question { font-size: 1rem; padding: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="main-header" id="mainHeader">
+  <div class="logo-container">
+    <img src="logo.png" alt="Edible Farms" class="logo-img" loading="eager">
+  </div>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="index.html#services">Services</a>
+    <a href="index.html#about">About</a>
+    <a href="index.html#gallery">Gallery</a>
+    <a href="index.html#contact">Contact</a>
+    <a href="bulk-order.html">Bulk Orders</a>
+  </div>
+  <div class="menu-toggle" id="menuToggle">☰</div>
+</header>
+
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html">Home</a>
+  <a href="index.html#services">Services</a>
+  <a href="index.html#about">About</a>
+  <a href="index.html#gallery">Gallery</a>
+  <a href="index.html#contact">Contact</a>
+  <a href="bulk-order.html">Bulk Orders</a>
+</div>
+
+<section class="page-hero" data-aos="fade-up">
+  <h1>Frequently Asked <span>Questions</span></h1>
+  <p>Everything you need to know about our catfish, ordering process, and delivery.</p>
+</section>
+
+<section class="faq-section">
+  <div class="faq-item" data-aos="fade-up">
+    <div class="faq-question">
+      <span>🐟 How is your catfish raised?</span>
+      <i class="fas fa-chevron-down"></i>
+    </div>
+    <div class="faq-answer">
+      <p>Our catfish are raised in pristine, natural ponds using sustainable aquaculture practices. We use NO antibiotics, NO growth hormones, and NO harmful chemicals. Our fish are fed a natural, plant-based diet and raised with care from fingerling to harvest.</p>
+    </div>
+  </div>
+
+  <div class="faq-item" data-aos="fade-up" data-aos-delay="50">
+    <div class="faq-question">
+      <span>📦 How fresh is your catfish?</span>
+      <i class="fas fa-chevron-down"></i>
+    </div>
+    <div class="faq-answer">
+      <p>Our catfish is harvested within 12-24 hours of delivery. We use refrigerated vehicles to maintain optimal temperature during transport. When you receive your order, the fish is still fresh, never frozen (unless you specifically request frozen).</p>
+    </div>
+  </div>
+
+  <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
+    <div class="faq-question">
+      <span>🚚 Do you deliver outside Accra?</span>
+      <i class="fas fa-chevron-down"></i>
+    </div>
+    <div class="faq-answer">
+      <p>Yes! We deliver to Tema, Kumasi, Takoradi, Cape Coast, and surrounding areas. Delivery fees vary based on location. For cities outside our standard delivery zones, please contact us directly to discuss options.</p>
+    </div>
+  </div>
+
+  <div class="faq-item" data-aos="fade-up" data-aos-delay="150">
+    <div class="faq-question">
+      <span>💰 What are your bulk order discounts?</span>
+      <i class="fas fa-chevron-down"></i>
+    </div>
+    <div class="faq-answer">
+      <p>Our bulk pricing is tiered based on quantity:</p>
+      <ul>
+        <li>25-50 kg: Standard pricing</li>
+        <li>50-100 kg: 5% discount</li>
+        <li>100-250 kg: 10% discount</li>
+        <li>250-500 kg: 15% discount</li>
+        <li>500+ kg: Custom pricing (contact us)</li>
+      </ul>
+      <p>Weekly, bi-weekly, and monthly contracts also qualify for additional discounts.</p>
+    </div>
+  </div>
+
+  <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
+    <div class="faq-question">
+      <span>🌱 Is your catfish organic/sustainable?</span>
+      <i class="fas fa-chevron-down"></i>
+    </div>
+    <div class="faq-answer">
+      <p>While we are in the process of obtaining full organic certification, our farming practices exceed conventional standards. We follow sustainable aquaculture principles, maintain water quality, and prioritize environmental stewardship. No antibiotics, no hormones, no overcrowding.</p>
+    </div>
+  </div>
+
+  <div class="faq-item" data-aos="fade-up" data-aos-delay="250">
+    <div class="faq-question">
+      <span>🔪 How should I store the catfish?</span>
+      <i class="fas fa-chevron-down"></i>
+    </div>
+    <div class="faq-answer">
+      <p>Store fresh catfish in the refrigerator at 0-4°C and consume within 2-3 days for best quality. For longer storage, freeze immediately - our catfish freezes well for up to 3 months. Always thaw frozen catfish in the refrigerator overnight before cooking.</p>
+    </div>
+  </div>
+
+  <div class="faq-item" data-aos="fade-up" data-aos-delay="300">
+    <div class="faq-question">
+      <span>💳 What payment methods do you accept?</span>
+      <i class="fas fa-chevron-down"></i>
+    </div>
+    <div class="faq-answer">
+      <p>We accept:</p>
+      <ul>
+        <li>Mobile Money (MTN, Vodafone, AirtelTigo)</li>
+        <li>Bank Transfer</li>
+        <li>Cash on Delivery (for orders under GHS 500)</li>
+        <li>For bulk/contract customers: 30-day invoice terms available</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="faq-item" data-aos="fade-up" data-aos-delay="350">
+    <div class="faq-question">
+      <span>🔄 Can I return or exchange my order?</span>
+      <i class="fas fa-chevron-down"></i>
+    </div>
+    <div class="faq-answer">
+      <p>If you're not satisfied with the quality of your catfish, contact us within 2 hours of delivery. We will either replace the fish or issue a full refund. Please see our <a href="shipping-policy.html" style="color: var(--accent-green);">Shipping Policy</a> for complete details.</p>
+    </div>
+  </div>
+
+  <div class="faq-item" data-aos="fade-up" data-aos-delay="400">
+    <div class="faq-question">
+      <span>🏢 Do you offer restaurant/wholesale contracts?</span>
+      <i class="fas fa-chevron-down"></i>
+    </div>
+    <div class="faq-answer">
+      <p>Absolutely! We specialize in providing reliable supply to restaurants, hotels, and catering businesses. We offer:</p>
+      <ul>
+        <li>Flexible delivery schedules (weekly, bi-weekly, monthly)</li>
+        <li>Tiered volume pricing</li>
+        <li>Invoice payment terms for established customers</li>
+        <li>Custom processing options</li>
+      </ul>
+      <p>Visit our <a href="bulk-order.html" style="color: var(--accent-green);">Bulk Orders page</a> to request a quote.</p>
+    </div>
+  </div>
+
+  <div class="faq-item" data-aos="fade-up" data-aos-delay="450">
+    <div class="faq-question">
+      <span>📞 How do I contact customer support?</span>
+      <i class="fas fa-chevron-down"></i>
+    </div>
+    <div class="faq-answer">
+      <p>You can reach us via:</p>
+      <ul>
+        <li>📞 Phone: <a href="tel:+233546600063" style="color: var(--accent-green);">+233 54 660 0063</a></li>
+        <li>📧 Email: <a href="mailto:ediblefarms000@gmail.com" style="color: var(--accent-green);">ediblefarms000@gmail.com</a></li>
+        <li>💬 WhatsApp: <a href="https://wa.me/233546600063" style="color: var(--accent-green);">+233 54 660 0063</a></li>
+      </ul>
+      <p>Our support hours are Monday-Friday 7am-6pm, Saturday 9am-4pm.</p>
+    </div>
+  </div>
+
+  <div class="contact-cta" data-aos="fade-up" data-aos-delay="500">
+    <p>❓ <strong>Still have questions?</strong> We're here to help!</p>
+    <p><a href="index.html#contact">Contact Us</a> or call <a href="tel:+233546600063">+233 54 660 0063</a></p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col"><h4>Edible Farms</h4><p style="font-size:0.85rem;">Premium catfish, raised naturally. Local, responsible, and delicious.</p></div>
+    <div class="footer-col"><h4>Quick Links</h4><a href="index.html">Home</a><a href="index.html#about">About</a><a href="index.html#services">Services</a><a href="index.html#contact">Contact</a></div>
+    <div class="footer-col"><h4>Support</h4><a href="shipping-policy.html">Shipping Policy</a><a href="faq.html">FAQ</a><a href="bulk-order.html">Bulk Orders</a></div>
+    <div class="footer-col"><h4>Contact</h4><a href="tel:+233546600063">+233 54 660 0063</a><a href="mailto:ediblefarms000@gmail.com">ediblefarms000@gmail.com</a></div>
+  </div>
+  <div class="copyright">© 2025 Edible Farms — Fresh. Local. Responsible. All rights reserved.</div>
+</footer>
+
+<script>
+  AOS.init({ duration: 800, once: true });
+  const header = document.getElementById('mainHeader');
+  window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 40));
+  document.getElementById('menuToggle').addEventListener('click', () => document.getElementById('mobileNav').classList.toggle('active'));
+  document.getElementById('mobileNav').querySelectorAll('a').forEach(link => link.addEventListener('click', () => document.getElementById('mobileNav').classList.remove('active')));
+
+  // FAQ accordion functionality
+  const faqItems = document.querySelectorAll('.faq-item');
+  faqItems.forEach(item => {
+    const question = item.querySelector('.faq-question');
+    const answer = item.querySelector('.faq-answer');
+    const icon = question.querySelector('i');
+    
+    question.addEventListener('click', () => {
+      const isOpen = answer.classList.contains('active');
+      // Close all others
+      document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('active'));
+      document.querySelectorAll('.faq-question i').forEach(i => i.className = 'fas fa-chevron-down');
+      
+      if (!isOpen) {
+        answer.classList.add('active');
+        icon.className = 'fas fa-chevron-up';
+      }
+    });
+  });
+
+  // Open first FAQ by default
+  if (faqItems[0]) {
+    faqItems[0].querySelector('.faq-answer').classList.add('active');
+    faqItems[0].querySelector('.faq-question i').className = 'fas fa-chevron-up';
+  }
+</script>
+</body>
+</html>
