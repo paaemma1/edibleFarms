@@ -4,204 +4,95 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   
-  <!-- SEO Meta Tags -->
-  <title>Edible Farms | Premium Locally Raised Catfish | Fresh & Sustainable</title>
-  <meta name="description" content="Edible Farms brings you premium, sustainably raised catfish. Fresh, local, and responsibly grown. Farm-to-fork delivery for restaurants and families." />
-  <meta name="keywords" content="catfish, premium catfish, fresh catfish, sustainable aquaculture, farm raised catfish, bulk catfish, local catfish, Ghana catfish" />
-  <meta name="author" content="Edible Farms" />
-  <meta name="robots" content="index, follow" />
-  <meta property="og:title" content="Edible Farms | Fresh Locally Raised Catfish" />
-  <meta property="og:description" content="Fresh, local, responsible catfish raised naturally. Trusted by restaurants and families across Ghana." />
-  <meta property="og:type" content="website" />
-  <meta name="twitter:card" content="summary_large_image" />
+  <title>Edible Farms | Premium Locally Raised Catfish</title>
   
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-  <!-- Font Awesome 6 -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
-  <!-- EmailJS Library -->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-
-  <!-- AOS Animation Library -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     :root {
       --primary-dark: #061d18;
       --accent-green: #25d366;
       --accent-gold: #d4af37;
       --accent-cyan: #00e5ff;
       --glass-bg: rgba(6, 29, 24, 0.55);
-      --glass-border: rgba(255, 255, 255, 0.1);
-      --text-light: #eef4ff;
     }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
     body {
-      font-family: 'Inter', system-ui, sans-serif;
+      font-family: 'Inter', sans-serif;
       background-color: var(--primary-dark);
       color: white;
       line-height: 1.5;
       overflow-x: hidden;
     }
-
-    /* Smooth fade-in animations */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(40px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
     @keyframes fadeInLeft {
-      from {
-        opacity: 0;
-        transform: translateX(-40px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
+      from { opacity: 0; transform: translateX(-40px); }
+      to { opacity: 1; transform: translateX(0); }
     }
-
     @keyframes fadeInRight {
-      from {
-        opacity: 0;
-        transform: translateX(40px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
+      from { opacity: 0; transform: translateX(40px); }
+      to { opacity: 1; transform: translateX(0); }
     }
-
     @keyframes float {
       0%, 100% { transform: translateY(0px); }
       50% { transform: translateY(-10px); }
     }
 
-    /* header */
     .main-header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      padding: 0 6%;
-      height: 90px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      z-index: 1100;
-      transition: all 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-      background: transparent;
+      position: fixed; top: 0; width: 100%; padding: 0 6%; height: 90px;
+      display: flex; align-items: center; justify-content: space-between;
+      z-index: 1100; transition: all 0.5s; background: transparent;
     }
     .main-header.scrolled {
-      background: rgba(6,29,24,0.95);
-      backdrop-filter: blur(20px);
-      height: 78px;
+      background: rgba(6,29,24,0.95); backdrop-filter: blur(20px); height: 78px;
       border-bottom: 1px solid rgba(37,211,102,0.3);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
     }
-    .logo-container { transform: translateY(16px); transition: all 0.4s ease; }
-    .logo-img { height: 240px; width: auto; filter: brightness(0) invert(1); transition: all 0.4s ease; }
+    .logo-container { transform: translateY(16px); transition: 0.4s; }
+    .logo-img { height: 240px; width: auto; filter: brightness(0) invert(1); transition: 0.4s; }
     .main-header.scrolled .logo-container { transform: translateY(8px); }
     .main-header.scrolled .logo-img { height: 92px; }
 
     .nav-links { display: flex; gap: 2.8rem; flex: 1; justify-content: center; }
     .nav-links a {
-      color: #f1f5f9;
-      text-decoration: none;
-      font-weight: 500;
-      transition: all 0.3s ease;
-      position: relative;
+      color: #f1f5f9; text-decoration: none; font-weight: 500; transition: 0.3s; position: relative;
     }
     .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -6px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--accent-green), var(--accent-gold));
-      transition: width 0.3s ease;
+      content: ''; position: absolute; bottom: -6px; left: 0; width: 0; height: 2px;
+      background: linear-gradient(90deg, var(--accent-green), var(--accent-gold)); transition: width 0.3s;
     }
     .nav-links a:hover::after { width: 100%; }
     .nav-links a:hover { color: var(--accent-green); transform: translateY(-2px); }
 
-    .menu-toggle { display: none; font-size: 2rem; cursor: pointer; background: none; border: none; color: white; z-index: 1200; transition: transform 0.2s; }
-    .menu-toggle:hover { transform: scale(1.1); }
+    .menu-toggle { display: none; font-size: 2rem; cursor: pointer; color: white; }
     .mobile-nav {
       position: fixed; inset: 0; background: rgba(3,20,16,0.98); backdrop-filter: blur(28px);
       display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2rem;
-      transform: translateX(100%); transition: transform 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1); z-index: 1050;
+      transform: translateX(100%); transition: transform 0.5s; z-index: 1050;
     }
     .mobile-nav.active { transform: translateX(0); }
-    .mobile-nav a { font-size: 1.7rem; font-weight: 600; color: white; text-decoration: none; transition: color 0.2s; }
-    .mobile-nav a:hover { color: var(--accent-green); transform: scale(1.05); }
+    .mobile-nav a { font-size: 1.7rem; font-weight: 600; color: white; text-decoration: none; }
+    .mobile-nav a:hover { color: var(--accent-green); }
 
-    /* hero */
     .hero {
-      min-height: 100vh;
-      padding: 60px 8% 90px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
+      min-height: 100vh; padding: 60px 8% 90px; display: flex; align-items: center;
+      justify-content: space-between; flex-wrap: wrap;
       background: linear-gradient(105deg, #061d18 0%, rgba(6,29,24,0.75) 45%, rgba(6,29,24,0.3) 100%), url('redtail-catfish.jpg');
-      background-size: cover;
-      background-position: 72% center;
-      position: relative;
-      overflow: hidden;
+      background-size: cover; background-position: 72% center; position: relative; overflow: hidden;
     }
     .hero::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
+      content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
       background: radial-gradient(circle, rgba(37,211,102,0.08) 0%, transparent 70%);
-      animation: float 20s ease-in-out infinite;
-      pointer-events: none;
+      animation: float 20s ease-in-out infinite; pointer-events: none;
     }
     .hero-content { max-width: 600px; animation: fadeInLeft 1s ease forwards; }
     .hero h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem,7vw,5rem); font-weight: 700; background: linear-gradient(135deg,#fff,#d4f5e0,#7fffd4); background-clip: text; -webkit-background-clip: text; color: transparent; }
-    .hero-tagline { color: var(--accent-green); letter-spacing: 5px; font-size: 0.85rem; margin-bottom: 1rem; text-transform: uppercase; }
-    .btn-group { display: flex; gap: 1rem; margin: 2rem 0 1.5rem; }
-    .btn {
-      padding: 0.9rem 2rem; border-radius: 50px; font-weight: 700; text-decoration: none;
-      transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1); display: inline-flex; align-items: center; gap: 8px;
-      position: relative;
-      overflow: hidden;
-    }
-    .btn::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-      transition: left 0.5s;
-    }
-    .btn:hover::before { left: 100%; }
+    .hero-tagline { color: var(--accent-green); letter-spacing: 5px; font-size: 0.85rem; margin-bottom: 1rem; }
+    .btn { padding: 0.9rem 2rem; border-radius: 50px; font-weight: 700; text-decoration: none; transition: all 0.4s; display: inline-flex; align-items: center; gap: 8px; }
     .btn-primary { background: linear-gradient(135deg, var(--accent-green), #1a9e4a, var(--accent-cyan)); background-size: 200% 200%; color: #061d18; box-shadow: 0 8px 25px rgba(37,211,102,0.35); }
-    .btn-primary:hover { transform: translateY(-4px); box-shadow: 0 15px 35px rgba(37,211,102,0.5); background-position: 100% 100%; }
+    .btn-primary:hover { transform: translateY(-4px); background-position: 100% 100%; }
     .btn-outline { border: 1.5px solid rgba(255,255,255,0.6); background: rgba(6,29,24,0.4); backdrop-filter: blur(8px); color: white; }
     .btn-outline:hover { border-color: var(--accent-green); background: rgba(37,211,102,0.15); transform: translateY(-4px); }
 
@@ -210,288 +101,95 @@
       padding: 1.8rem; min-width: 260px; border: 1px solid transparent;
       background-image: linear-gradient(var(--glass-bg), var(--glass-bg)), linear-gradient(135deg, var(--accent-green), var(--accent-gold));
       background-origin: border-box; background-clip: padding-box, border-box;
-      transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-      animation: fadeInRight 1s ease forwards;
+      transition: all 0.4s; animation: fadeInRight 1s ease forwards;
     }
-    .trust-badges:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 25px 40px rgba(0,0,0,0.3); }
-    .badge-item { display: flex; gap: 14px; padding: 0.6rem 0; border-bottom: 1px solid rgba(255,255,255,0.08); transition: transform 0.2s; cursor: pointer; }
+    .trust-badges:hover { transform: translateY(-8px) scale(1.02); }
+    .badge-item { display: flex; gap: 14px; padding: 0.6rem 0; border-bottom: 1px solid rgba(255,255,255,0.08); transition: transform 0.2s; }
     .badge-item:hover { transform: translateX(8px); border-bottom-color: var(--accent-green); }
     .badge-item:last-child { border: none; }
 
-    /* sections */
     section { padding: 100px 8%; }
     .section-title {
       font-family: 'Cormorant Garamond', serif;
       font-size: clamp(2.2rem, 5vw, 3.2rem);
-      text-align: center;
-      margin-bottom: 3rem;
-      letter-spacing: -0.3px;
-      position: relative;
+      text-align: center; margin-bottom: 3rem;
     }
     .section-title span { background: linear-gradient(135deg, var(--accent-green), var(--accent-gold)); background-clip: text; -webkit-background-clip: text; color: transparent; border-bottom: 2px solid var(--accent-gold); display: inline-block; padding-bottom: 6px; }
 
-    /* services grid */
     .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 2rem;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem;
     }
     .service-card {
-      background: rgba(255,255,255,0.03);
-      backdrop-filter: blur(8px);
-      padding: 2rem 1.5rem;
-      border-radius: 28px;
-      border: 1px solid rgba(255,255,255,0.08);
-      transition: all 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-      text-align: center;
-      cursor: pointer;
+      background: rgba(255,255,255,0.03); backdrop-filter: blur(8px); padding: 2rem 1.5rem;
+      border-radius: 28px; border: 1px solid rgba(255,255,255,0.08);
+      transition: all 0.5s; text-align: center;
     }
-    .service-card:hover { transform: translateY(-12px) scale(1.02); background: rgba(37,211,102,0.12); border-color: var(--accent-green); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
-    .service-icon { font-size: 3rem; background: linear-gradient(135deg, var(--accent-green), var(--accent-cyan)); background-clip: text; -webkit-background-clip: text; color: transparent; margin-bottom: 1rem; transition: transform 0.3s; }
-    .service-card:hover .service-icon { transform: scale(1.1); }
+    .service-card:hover { transform: translateY(-12px) scale(1.02); background: rgba(37,211,102,0.12); border-color: var(--accent-green); }
+    .service-icon { font-size: 3rem; background: linear-gradient(135deg, var(--accent-green), var(--accent-cyan)); background-clip: text; -webkit-background-clip: text; color: transparent; margin-bottom: 1rem; }
 
-    /* about stats */
     .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: center;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;
     }
-    .about-text p { margin-bottom: 1.2rem; color: #e2e8f0; line-height: 1.6; }
-    .about-stats {
-      display: flex;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-      margin-top: 2rem;
-    }
-    .stat {
-      background: linear-gradient(135deg, rgba(37,211,102,0.12), rgba(0,229,255,0.08));
-      backdrop-filter: blur(8px);
-      padding: 1.2rem;
-      border-radius: 24px;
-      text-align: center;
-      flex: 1;
-      border: 1px solid rgba(37,211,102,0.2);
-      transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-      cursor: pointer;
-    }
-    .stat:hover {
-      transform: translateY(-8px) scale(1.03);
-      background: rgba(37,211,102,0.2);
-      border-color: var(--accent-green);
-      box-shadow: 0 15px 30px rgba(37,211,102,0.2);
-    }
-    .stat-number {
-      font-size: 1.8rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, var(--accent-green), var(--accent-cyan));
-      background-clip: text;
-      -webkit-background-clip: text;
-      color: transparent;
-    }
+    .about-stats { display: flex; gap: 1.5rem; margin-top: 2rem; }
+    .stat { background: linear-gradient(135deg, rgba(37,211,102,0.12), rgba(0,229,255,0.08)); backdrop-filter: blur(8px); padding: 1.2rem; border-radius: 24px; text-align: center; flex: 1; transition: all 0.3s; }
+    .stat:hover { transform: translateY(-8px); background: rgba(37,211,102,0.2); }
+    .stat-number { font-size: 1.8rem; font-weight: 800; background: linear-gradient(135deg, var(--accent-green), var(--accent-cyan)); background-clip: text; -webkit-background-clip: text; color: transparent; }
 
-    /* gallery */
     .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;
     }
     .gallery-item {
-      aspect-ratio: 1 / 1;
-      border-radius: 24px;
-      overflow: hidden;
-      cursor: pointer;
-      transition: all 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-      border: 1px solid rgba(255,255,255,0.1);
-      position: relative;
+      aspect-ratio: 1/1; border-radius: 24px; overflow: hidden; cursor: pointer;
+      transition: all 0.5s; border: 1px solid rgba(255,255,255,0.1); position: relative;
     }
-    .gallery-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.6s ease;
-    }
-    .gallery-item:hover {
-      transform: scale(1.03);
-      border-color: var(--accent-green);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-    }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s; }
+    .gallery-item:hover { transform: scale(1.03); border-color: var(--accent-green); }
     .gallery-item:hover img { transform: scale(1.08); }
     .gallery-overlay {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-      padding: 1rem;
-      transform: translateY(100%);
-      transition: transform 0.4s ease;
-      text-align: center;
-      font-size: 0.9rem;
-      font-weight: 500;
+      position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+      padding: 1rem; transform: translateY(100%); transition: transform 0.4s; text-align: center;
     }
     .gallery-item:hover .gallery-overlay { transform: translateY(0); }
 
-    /* Bulk Order Form - New */
-    .bulk-form-section {
-      max-width: 800px;
-      margin: 0 auto;
-      background: rgba(255,255,255,0.03);
-      backdrop-filter: blur(12px);
-      border-radius: 32px;
-      padding: 2.5rem;
-      border: 1px solid rgba(255,255,255,0.1);
-    }
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-      margin-bottom: 1rem;
-    }
-    .bulk-form-group {
-      margin-bottom: 1.2rem;
-    }
-    .bulk-form-group label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: var(--accent-green);
-    }
-    .bulk-form-group input, .bulk-form-group select, .bulk-form-group textarea {
-      width: 100%;
-      padding: 0.9rem;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.2);
-      border-radius: 16px;
-      color: white;
-      font-family: inherit;
-      transition: all 0.3s;
-    }
-    .bulk-form-group input:focus, .bulk-form-group select:focus, .bulk-form-group textarea:focus {
-      outline: none;
-      border-color: var(--accent-green);
-      background: rgba(255,255,255,0.12);
-      transform: scale(1.01);
-    }
-    .bulk-form-group input::placeholder, .bulk-form-group textarea::placeholder {
-      color: rgba(255,255,255,0.4);
-    }
-    .bulk-submit-btn {
-      background: linear-gradient(135deg, var(--accent-green), var(--accent-cyan));
-      border: none;
-      padding: 1rem;
-      border-radius: 40px;
-      font-weight: bold;
-      cursor: pointer;
-      width: 100%;
-      color: #061d18;
-      font-size: 1rem;
-      transition: all 0.3s;
-      margin-top: 0.5rem;
-    }
-    .bulk-submit-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 25px rgba(37,211,102,0.4);
-    }
-    @media (max-width: 600px) {
-      .form-row {
-        grid-template-columns: 1fr;
-      }
-      .bulk-form-section {
-        padding: 1.5rem;
-      }
-    }
-
-    /* contact */
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-    }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
     .contact-info { background: rgba(255,255,255,0.03); padding: 2rem; border-radius: 28px; backdrop-filter: blur(8px); transition: all 0.3s; }
     .contact-info:hover { transform: translateY(-5px); background: rgba(255,255,255,0.05); }
-    .contact-detail { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; transition: transform 0.2s; }
-    .contact-detail:hover { transform: translateX(8px); }
-    .contact-detail i { font-size: 1.6rem; color: var(--accent-green); width: 40px; transition: transform 0.2s; }
-    .contact-detail:hover i { transform: scale(1.1); }
+    .contact-detail { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
+    .contact-detail i { font-size: 1.6rem; color: var(--accent-green); width: 40px; }
     .contact-form input, .contact-form textarea {
       width: 100%; padding: 1rem; margin-bottom: 1rem; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2);
       border-radius: 16px; color: white; font-family: inherit; transition: all 0.3s;
     }
-    .contact-form input:focus, .contact-form textarea:focus {
-      outline: none; border-color: var(--accent-green); background: rgba(255,255,255,0.12); transform: scale(1.01);
-    }
-    .contact-form button { background: linear-gradient(135deg, var(--accent-green), #1a9e4a); border: none; padding: 1rem; border-radius: 40px; font-weight: bold; cursor: pointer; width: 100%; color: #061d18; font-size: 1rem; transition: all 0.3s; }
-    .contact-form button:hover { background: linear-gradient(135deg, #1bb154, var(--accent-cyan)); transform: translateY(-3px); box-shadow: 0 10px 25px rgba(37,211,102,0.4); }
+    .contact-form input:focus, .contact-form textarea:focus { outline: none; border-color: var(--accent-green); }
+    .contact-form button { background: linear-gradient(135deg, var(--accent-green), #1a9e4a); border: none; padding: 1rem; border-radius: 40px; font-weight: bold; cursor: pointer; width: 100%; color: #061d18; transition: 0.3s; }
+    .contact-form button:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(37,211,102,0.4); }
 
-    .form-message {
-      margin-top: 1rem;
-      padding: 0.75rem;
-      border-radius: 12px;
-      text-align: center;
-      font-size: 0.85rem;
-      display: none;
-      animation: fadeInUp 0.5s ease;
-    }
+    .form-message { margin-top: 1rem; padding: 0.75rem; border-radius: 12px; text-align: center; font-size: 0.85rem; display: none; }
     .form-message.success { background: rgba(37,211,102,0.2); border: 1px solid var(--accent-green); color: #d4f5e0; display: block; }
     .form-message.error { background: rgba(255,70,70,0.2); border: 1px solid #ff4646; color: #ffb3b3; display: block; }
 
-    /* footer */
     footer {
       background: linear-gradient(135deg, #02120e, #031a15);
-      padding: 3rem 8% 2rem;
-      border-top: 1px solid rgba(37,211,102,0.2);
+      padding: 3rem 8% 2rem; border-top: 1px solid rgba(37,211,102,0.2);
     }
-    .footer-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 2rem;
-      margin-bottom: 2rem;
-    }
+    .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-bottom: 2rem; }
     .footer-col h4 { margin-bottom: 1rem; font-size: 1.1rem; background: linear-gradient(135deg, var(--accent-green), var(--accent-gold)); background-clip: text; -webkit-background-clip: text; color: transparent; }
-    .footer-col a { display: block; color: #cbd5e1; text-decoration: none; margin-bottom: 0.5rem; font-size: 0.9rem; transition: all 0.3s; }
+    .footer-col a { display: block; color: #cbd5e1; text-decoration: none; margin-bottom: 0.5rem; font-size: 0.9rem; transition: 0.3s; }
     .footer-col a:hover { color: var(--accent-green); transform: translateX(8px); }
-    
     .social-icons { display: flex; gap: 1rem; margin-top: 1rem; }
-    .social-icons a { 
-      background: rgba(100, 150, 140, 0.35);
-      width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; border-radius: 50%; 
-      transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-      color: #e0f2fe; font-size: 1.3rem; text-decoration: none;
-      border: 1px solid rgba(255,255,255,0.15);
-      backdrop-filter: blur(4px);
+    .social-icons a {
+      background: rgba(100,150,140,0.35); width: 42px; height: 42px; display: flex; align-items: center; justify-content: center;
+      border-radius: 50%; transition: all 0.4s; color: #e0f2fe; font-size: 1.3rem; text-decoration: none;
     }
-    .social-icons a:hover { background: linear-gradient(135deg, var(--accent-green), var(--accent-cyan)); color: #061d18; transform: translateY(-6px) scale(1.1); border-color: var(--accent-green); box-shadow: 0 10px 25px rgba(37,211,102,0.4); }
-    
-    .resources-list {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-    .resource-link {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 0.6rem 0.8rem;
-      background: rgba(37,211,102,0.08);
-      border-radius: 50px;
-      transition: all 0.3s ease;
-      text-decoration: none;
-      color: #e0f2fe;
-      font-size: 0.85rem;
-      border: 1px solid rgba(37,211,102,0.2);
-    }
-    .resource-link i { font-size: 1rem; color: var(--accent-green); transition: transform 0.3s; }
-    .resource-link:hover { background: linear-gradient(135deg, rgba(37,211,102,0.2), rgba(0,229,255,0.1)); transform: translateX(5px); border-color: var(--accent-green); color: white; }
-    .resource-link:hover i { transform: scale(1.1); }
-    
+    .social-icons a:hover { background: linear-gradient(135deg, var(--accent-green), var(--accent-cyan)); color: #061d18; transform: translateY(-6px); }
+    .resources-list { display: flex; flex-direction: column; gap: 0.75rem; }
+    .resource-link { display: flex; align-items: center; gap: 10px; padding: 0.6rem 0.8rem; background: rgba(37,211,102,0.08); border-radius: 50px; transition: 0.3s; text-decoration: none; color: #e0f2fe; font-size: 0.85rem; border: 1px solid rgba(37,211,102,0.2); }
+    .resource-link:hover { background: rgba(37,211,102,0.2); transform: translateX(5px); }
     .copyright { text-align: center; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.8rem; color: #9ca3af; }
 
     @media (max-width: 900px) {
       .nav-links { display: none; }
       .menu-toggle { display: block; }
-      .logo-container { transform: translateY(12px); }
       .logo-img { height: 180px; }
       .about-grid, .contact-grid { grid-template-columns: 1fr; }
       .hero { flex-direction: column; align-items: flex-start; gap: 2rem; }
@@ -502,337 +200,154 @@
       .btn-group { flex-direction: column; align-items: stretch; }
       .btn { justify-content: center; }
       section { padding: 60px 5%; }
-      .logo-container { transform: translateY(10px); }
+      .logo-img { height: 140px; }
     }
   </style>
 </head>
 <body>
 
 <header class="main-header" id="mainHeader">
-  <div class="logo-container">
-    <img src="logo.png" alt="Edible Farms - Premium Catfish Logo" class="logo-img" loading="eager">
-  </div>
+  <div class="logo-container"><img src="logo.png" alt="Edible Farms" class="logo-img" loading="eager"></div>
   <div class="nav-links">
-    <a href="#home">Home</a>
-    <a href="#services">Services</a>
-    <a href="#about">About</a>
-    <a href="#gallery">Gallery</a>
-    <a href="#contact">Contact</a>
-    <a href="#bulk">Bulk Orders</a>
+    <a href="#home">Home</a><a href="#services">Services</a><a href="#about">About</a>
+    <a href="#gallery">Gallery</a><a href="#contact">Contact</a>
+    <a href="bulk-order.html" style="background: rgba(37,211,102,0.2); padding: 0.5rem 1rem; border-radius: 40px;">Bulk Orders</a>
   </div>
   <div class="menu-toggle" id="menuToggle">☰</div>
 </header>
 
 <div class="mobile-nav" id="mobileNav">
-  <a href="#home">Home</a>
-  <a href="#services">Services</a>
-  <a href="#about">About</a>
-  <a href="#gallery">Gallery</a>
-  <a href="#contact">Contact</a>
-  <a href="#bulk">Bulk Orders</a>
+  <a href="#home">Home</a><a href="#services">Services</a><a href="#about">About</a>
+  <a href="#gallery">Gallery</a><a href="#contact">Contact</a>
+  <a href="bulk-order.html">Bulk Orders</a>
 </div>
 
-<!-- Hero -->
 <section class="hero" id="home">
-  <div class="hero-content" data-aos="fade-right" data-aos-duration="1000">
+  <div class="hero-content" data-aos="fade-right">
     <p class="hero-tagline">FRESH. LOCAL. RESPONSIBLE.</p>
     <h2>Premium Catfish.<br>Raised Naturally.</h2>
-    <p style="margin: 1rem 0 0; color:#d1dbe6; max-width: 550px;">Ditch the mystery meat. Edible Farms brings you buttery, high-protein catfish raised with a conscience. Locally sourced, sustainably grown, and delivered fresh — farm-to-fork at its finest.</p>
-    <div class="btn-group">
-      <a href="#bulk" class="btn btn-primary">Bulk Orders →</a>
+    <p style="margin: 1rem 0 0; color:#d1dbe6;">Ditch the mystery meat. Edible Farms brings you buttery, high-protein catfish raised with a conscience. Locally sourced, sustainably grown, and delivered fresh.</p>
+    <div class="btn-group" style="display: flex; gap: 1rem; margin: 2rem 0 1.5rem;">
+      <a href="bulk-order.html" class="btn btn-primary">Bulk Orders →</a>
       <a href="#contact" class="btn btn-outline">Buy for Home →</a>
     </div>
-    <div class="hero-trusted" style="background: rgba(0,0,0,0.3); width: fit-content; padding: 0.5rem 1rem; border-radius: 40px;">★ Trusted by restaurants & families</div>
+    <div style="background: rgba(0,0,0,0.3); width: fit-content; padding: 0.5rem 1rem; border-radius: 40px;">★ Trusted by restaurants & families</div>
   </div>
-  <div class="trust-badges" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
-    <div class="badge-item"><span class="badge-icon">🐟</span><div><div class="badge-title">100% Locally Sourced</div><div class="badge-sub">Regional farms → your table</div></div></div>
-    <div class="badge-item"><span class="badge-icon">🌱</span><div><div class="badge-title">Sustainably Raised</div><div class="badge-sub">No antibiotics • No hormones</div></div></div>
-    <div class="badge-item"><span class="badge-icon">⭐</span><div><div class="badge-title">4.9/5 from 500+ Customers</div><div class="badge-sub">Trusted by families & chefs</div></div></div>
-    <div class="badge-item"><span class="badge-icon">📦</span><div><div class="badge-title">Fresh 24-Hour Delivery</div><div class="badge-sub">Farm-to-fork guarantee</div></div></div>
-    <div class="social-proof"><div style="opacity:0.6; font-size:0.65rem;">AS FEATURED IN</div><div style="display: flex; justify-content: center; gap: 1rem; margin-top: 0.4rem;"><span>FOOD & WINE</span><span>✦</span><span>EATER</span><span>✦</span><span>LOCAL HARVEST</span></div></div>
+  <div class="trust-badges" data-aos="fade-left" data-aos-delay="200">
+    <div class="badge-item"><span>🐟</span><div><div class="badge-title">100% Locally Sourced</div><div class="badge-sub">Regional farms → your table</div></div></div>
+    <div class="badge-item"><span>🌱</span><div><div class="badge-title">Sustainably Raised</div><div class="badge-sub">No antibiotics • No hormones</div></div></div>
+    <div class="badge-item"><span>⭐</span><div><div class="badge-title">4.9/5 from 500+ Customers</div><div class="badge-sub">Trusted by families & chefs</div></div></div>
+    <div class="badge-item"><span>📦</span><div><div class="badge-title">Fresh 24-Hour Delivery</div><div class="badge-sub">Farm-to-fork guarantee</div></div></div>
   </div>
 </section>
 
-<!-- Services -->
-<section id="services">
-  <h2 class="section-title" data-aos="fade-up">Our <span>Services</span></h2>
+<section id="services"><h2 class="section-title" data-aos="fade-up">Our <span>Services</span></h2>
   <div class="services-grid">
-    <div class="service-card" data-aos="fade-up" data-aos-delay="0"><i class="fas fa-truck service-icon"></i><h3>Wholesale Supply</h3><p>Consistent weekly delivery for restaurants, hotels & catering businesses.</p></div>
+    <div class="service-card" data-aos="fade-up"><i class="fas fa-truck service-icon"></i><h3>Wholesale Supply</h3><p>Consistent weekly delivery for restaurants, hotels & catering businesses.</p></div>
     <div class="service-card" data-aos="fade-up" data-aos-delay="100"><i class="fas fa-home service-icon"></i><h3>Home Delivery</h3><p>Fresh catfish delivered to your door. Flexible subscriptions & family packs.</p></div>
     <div class="service-card" data-aos="fade-up" data-aos-delay="200"><i class="fas fa-cut service-icon"></i><h3>Custom Processing</h3><p>Fillets, whole fish, or value-added cuts — tailored to your need.</p></div>
     <div class="service-card" data-aos="fade-up" data-aos-delay="300"><i class="fas fa-chalkboard-user service-icon"></i><h3>Farm Tours & Education</h3><p>Learn about sustainable aquaculture. Perfect for schools & chef programs.</p></div>
   </div>
 </section>
 
-<!-- About -->
-<section id="about">
-  <h2 class="section-title" data-aos="fade-up">About <span>Edible Farms</span></h2>
+<section id="about"><h2 class="section-title" data-aos="fade-up">About <span>Edible Farms</span></h2>
   <div class="about-grid">
     <div class="about-text" data-aos="fade-right">
-      <p>Born from a passion for clean, honest food, Edible Farms is a fresh Ghanaian startup on a mission: <strong>to bring premium, responsibly raised catfish to every table.</strong> We believe great taste shouldn't come at the expense of your health or the planet.</p>
-      <p>Our journey began in Ablekuma, Accra, where we started small but dream big. Today, we're proud to partner with local restaurants and families who share our vision for sustainable, delicious seafood. No shortcuts. No mystery. Just pure, fresh catfish.</p>
+      <p>Born from a passion for clean, honest food, Edible Farms is a fresh Ghanaian startup on a mission: <strong>to bring premium, responsibly raised catfish to every table.</strong></p>
+      <p>Our journey began in Ablekuma, Accra, where we started small but dream big. Today, we're proud to partner with local restaurants and families who share our vision for sustainable, delicious seafood.</p>
       <div class="about-stats">
-        <div class="stat" data-aos="zoom-in" data-aos-delay="0"><div class="stat-number">🐟 100%</div><div class="stat-label">Fresh & Natural</div></div>
-        <div class="stat" data-aos="zoom-in" data-aos-delay="100"><div class="stat-number">🌱 Zero</div><div class="stat-label">Antibiotics or Hormones</div></div>
-        <div class="stat" data-aos="zoom-in" data-aos-delay="200"><div class="stat-number">⭐ 4.9 ★</div><div class="stat-label">Customer Love</div></div>
+        <div class="stat"><div class="stat-number">🐟 100%</div><div>Fresh & Natural</div></div>
+        <div class="stat"><div class="stat-number">🌱 Zero</div><div>Antibiotics or Hormones</div></div>
+        <div class="stat"><div class="stat-number">⭐ 4.9 ★</div><div>Customer Love</div></div>
       </div>
     </div>
-    <div class="about-image" data-aos="fade-left">
-      <img src="https://img.freepik.com/premium-photo/close-up-fresh-catfish-with-glossy-skins-bustling-fish-market-highlighting-texture-details-aquatic-creatures-against-vibrant-dynamic-background_765331-5015.jpg" alt="Fresh catfish at Edible Farms market" loading="lazy" style="width:100%; border-radius:28px;">
-    </div>
+    <div class="about-image" data-aos="fade-left"><img src="https://img.freepik.com/premium-photo/close-up-fresh-catfish-with-glossy-skins-bustling-fish-market-highlighting-texture-details-aquatic-creatures-against-vibrant-dynamic-background_765331-5015.jpg" alt="Fresh catfish" style="width:100%; border-radius:28px;"></div>
   </div>
 </section>
 
-<!-- Gallery -->
-<section id="gallery">
-  <h2 class="section-title" data-aos="fade-up">From Pond to <span>Plate</span></h2>
+<section id="gallery"><h2 class="section-title" data-aos="fade-up">From Pond to <span>Plate</span></h2>
   <div class="gallery-grid">
-    <div class="gallery-item" data-aos="flip-left" data-aos-delay="0"><img src="https://www.shutterstock.com/image-photo/some-white-catfish-popularly-known-600nw-2304531177.jpg" alt="Fresh whole catfish" loading="lazy"><div class="gallery-overlay">Fresh Catch</div></div>
-    <div class="gallery-item" data-aos="flip-left" data-aos-delay="100"><img src="https://www.aquaculturealliance.org/wp-content/uploads/2009/09/ROGERSpic1-960x450.jpg" alt="Sustainable farm pond" loading="lazy"><div class="gallery-overlay">Natural Ponds</div></div>
-    <div class="gallery-item" data-aos="flip-left" data-aos-delay="200"><img src="https://fishtank.com.ng/wp-content/uploads/2020/12/DSC_5368-1-scaled.jpg" alt="Grilled catfish fillet" loading="lazy"><div class="gallery-overlay">Premium Fillets</div></div>
-    <div class="gallery-item" data-aos="flip-left" data-aos-delay="300"><img src="https://emeraldtransportationsolutions.com/wp-content/uploads/2022/05/0ylzNNplW9qe0fPfGGeG9kHnnRZvqZSx1655986652.jpg" alt="Delivery truck" loading="lazy"><div class="gallery-overlay">Farm to Table</div></div>
-    <div class="gallery-item" data-aos="flip-left" data-aos-delay="400"><img src="https://www.fao.org/fishery/services/storage/fs/fishery/images/culturedspecies//clarias/12swam-pond-clarias-harvest-Santchou.jpg" alt="Morning harvest" loading="lazy"><div class="gallery-overlay">Morning Harvest</div></div>
-    <div class="gallery-item" data-aos="flip-left" data-aos-delay="500"><img src="https://cheflolaskitchen.com/wp-content/uploads/2025/07/Catfish-Steak.jpg" alt="Chef preparing catfish" loading="lazy"><div class="gallery-overlay">Chef Approved</div></div>
-  </div>
-  <p style="text-align: center; margin-top: 2rem; opacity: 0.7;">Fresh harvest, sustainable ponds, and premium fillets — captured daily.</p>
-</section>
-
-<!-- Bulk Orders Section with Dedicated Form -->
-<section id="bulk">
-  <h2 class="section-title" data-aos="fade-up">Bulk <span>Orders</span></h2>
-  <div class="bulk-form-section" data-aos="fade-up" data-aos-delay="100">
-    <p style="text-align: center; margin-bottom: 2rem; color: #cbd5e1;">Fill out the form below to request a bulk order. We'll get back to you within 24 hours with pricing and availability.</p>
-    <form id="bulkOrderForm">
-      <div class="form-row">
-        <div class="bulk-form-group">
-          <label>Business/Restaurant Name *</label>
-          <input type="text" id="businessName" placeholder="e.g., Ocean View Restaurant" required>
-        </div>
-        <div class="bulk-form-group">
-          <label>Contact Person *</label>
-          <input type="text" id="contactPerson" placeholder="Full name" required>
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="bulk-form-group">
-          <label>Email Address *</label>
-          <input type="email" id="bulkEmail" placeholder="you@example.com" required>
-        </div>
-        <div class="bulk-form-group">
-          <label>Phone Number *</label>
-          <input type="tel" id="bulkPhone" placeholder="+233 XX XXX XXXX" required>
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="bulk-form-group">
-          <label>Quantity Needed *</label>
-          <select id="quantity" required>
-            <option value="">Select quantity</option>
-            <option value="50-100 kg">50 - 100 kg</option>
-            <option value="100-250 kg">100 - 250 kg</option>
-            <option value="250-500 kg">250 - 500 kg</option>
-            <option value="500-1000 kg">500 - 1000 kg</option>
-            <option value="1000+ kg">1000+ kg (call for custom pricing)</option>
-          </select>
-        </div>
-        <div class="bulk-form-group">
-          <label>Delivery Frequency *</label>
-          <select id="frequency" required>
-            <option value="">Select frequency</option>
-            <option value="One-time order">One-time order</option>
-            <option value="Weekly">Weekly delivery</option>
-            <option value="Bi-weekly">Bi-weekly delivery</option>
-            <option value="Monthly">Monthly delivery</option>
-          </select>
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="bulk-form-group">
-          <label>Preferred Delivery Date *</label>
-          <input type="date" id="deliveryDate" required>
-        </div>
-        <div class="bulk-form-group">
-          <label>Preferred Processing *</label>
-          <select id="processing" required>
-            <option value="">Select option</option>
-            <option value="Whole fish">Whole fish (fresh)</option>
-            <option value="Whole fish (frozen)">Whole fish (frozen)</option>
-            <option value="Fillets">Fillets (deboned)</option>
-            <option value="Steaks">Steaks (cut portions)</option>
-          </select>
-        </div>
-      </div>
-      <div class="bulk-form-group">
-        <label>Special Requests or Notes</label>
-        <textarea id="specialRequests" rows="3" placeholder="Any specific requirements, delivery instructions, or questions..."></textarea>
-      </div>
-      <button type="submit" class="bulk-submit-btn" id="bulkSubmitBtn">Submit Bulk Order Request →</button>
-    </form>
-    <div id="bulkFormMessage" class="form-message"></div>
+    <div class="gallery-item"><img src="https://www.shutterstock.com/image-photo/some-white-catfish-popularly-known-600nw-2304531177.jpg" alt="Fresh catfish"><div class="gallery-overlay">Fresh Catch</div></div>
+    <div class="gallery-item"><img src="https://www.aquaculturealliance.org/wp-content/uploads/2009/09/ROGERSpic1-960x450.jpg" alt="Farm pond"><div class="gallery-overlay">Natural Ponds</div></div>
+    <div class="gallery-item"><img src="https://fishtank.com.ng/wp-content/uploads/2020/12/DSC_5368-1-scaled.jpg" alt="Grilled catfish"><div class="gallery-overlay">Premium Fillets</div></div>
+    <div class="gallery-item"><img src="https://emeraldtransportationsolutions.com/wp-content/uploads/2022/05/0ylzNNplW9qe0fPfGGeG9kHnnRZvqZSx1655986652.jpg" alt="Delivery"><div class="gallery-overlay">Farm to Table</div></div>
+    <div class="gallery-item"><img src="https://www.fao.org/fishery/services/storage/fs/fishery/images/culturedspecies//clarias/12swam-pond-clarias-harvest-Santchou.jpg" alt="Harvest"><div class="gallery-overlay">Morning Harvest</div></div>
+    <div class="gallery-item"><img src="https://cheflolaskitchen.com/wp-content/uploads/2025/07/Catfish-Steak.jpg" alt="Chef"><div class="gallery-overlay">Chef Approved</div></div>
   </div>
 </section>
 
-<!-- Contact Section -->
-<section id="contact">
-  <h2 class="section-title" data-aos="fade-up">Let's <span>Connect</span></h2>
+<section id="contact"><h2 class="section-title" data-aos="fade-up">Let's <span>Connect</span></h2>
   <div class="contact-grid">
     <div class="contact-info" data-aos="fade-right">
       <div class="contact-detail"><i class="fas fa-map-marker-alt"></i> <span>Ablekuma Pentecost Junction, Accra</span></div>
-      <div class="contact-detail"><i class="fas fa-phone-alt"></i> <span><a href="tel:+233546600063" style="color:white; text-decoration:none;">+233 54 660 0063</a></span></div>
-      <div class="contact-detail"><i class="fas fa-envelope"></i> <span><a href="mailto:ediblefarms000@gmail.com" style="color:white; text-decoration:none;">ediblefarms000@gmail.com</a></span></div>
+      <div class="contact-detail"><i class="fas fa-phone-alt"></i> <span><a href="tel:+233546600063" style="color:white;">+233 54 660 0063</a></span></div>
+      <div class="contact-detail"><i class="fas fa-envelope"></i> <span><a href="mailto:ediblefarms000@gmail.com" style="color:white;">ediblefarms000@gmail.com</a></span></div>
       <div class="contact-detail"><i class="fas fa-clock"></i> <span>Mon-Fri: 7am – 6pm | Sat: 9am – 4pm</span></div>
-      <div class="social-icons" style="margin-top: 1.5rem;">
-        <a href="https://wa.me/233546600063" target="_blank"><i class="fab fa-whatsapp"></i></a>
-        <a href="https://instagram.com/ediblefarms" target="_blank"><i class="fab fa-instagram"></i></a>
-        <a href="https://facebook.com/ediblefarms" target="_blank"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://twitter.com/ediblefarms" target="_blank"><i class="fab fa-twitter"></i></a>
-      </div>
+      <div class="social-icons"><a href="https://wa.me/233546600063"><i class="fab fa-whatsapp"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-twitter"></i></a></div>
     </div>
     <div class="contact-form" data-aos="fade-left">
-      <form id="contactForm">
-        <input type="text" id="userName" placeholder="Your name" required>
-        <input type="email" id="userEmail" placeholder="Email address" required>
-        <textarea id="userMessage" rows="4" placeholder="Tell us about your order or inquiry..." required></textarea>
-        <button type="submit" id="submitBtn">Send Message →</button>
-      </form>
+      <form id="contactForm"><input type="text" id="userName" placeholder="Your name" required><input type="email" id="userEmail" placeholder="Email address" required><textarea id="userMessage" rows="4" placeholder="Tell us about your order or inquiry..." required></textarea><button type="submit" id="submitBtn">Send Message →</button></form>
       <div id="contactFormMessage" class="form-message"></div>
-      <p style="font-size: 0.7rem; text-align: center; margin-top: 0.8rem; opacity: 0.6;">✓ Messages are sent directly to <strong>ediblefarms000@gmail.com</strong></p>
     </div>
   </div>
 </section>
 
-<!-- Footer -->
 <footer>
   <div class="footer-grid">
-    <div class="footer-col"><h4>Edible Farms</h4><p style="font-size:0.85rem;">Premium catfish, raised naturally. Local, responsible, and delicious.</p></div>
+    <div class="footer-col"><h4>Edible Farms</h4><p>Premium catfish, raised naturally.</p></div>
     <div class="footer-col"><h4>Quick Links</h4><a href="#home">Home</a><a href="#about">About</a><a href="#services">Services</a><a href="#contact">Contact</a></div>
-    <div class="footer-col"><h4>Support</h4><a href="#bulk">Bulk Orders</a><a href="#">Shipping Policy</a><a href="#">Returns</a><a href="#">FAQs</a></div>
+    <div class="footer-col"><h4>Bulk Orders</h4><a href="bulk-order.html">Request Quote</a><a href="#">Shipping Policy</a><a href="#">FAQs</a></div>
     <div class="footer-col"><h4>📚 Learn Aquaculture</h4>
       <div class="resources-list">
-        <a href="https://www.fao.org/fishery/en/aquaculture" target="_blank" rel="noopener noreferrer" class="resource-link">
-          <i class="fas fa-globe-africa"></i>
-          <span class="resource-label">FAO Aquaculture (UN)</span>
-        </a>
-        <a href="https://thefishsite.com/" target="_blank" rel="noopener noreferrer" class="resource-link">
-          <i class="fas fa-fish"></i>
-          <span class="resource-label">The Fish Site</span>
-        </a>
-        <a href="https://www.was.org/" target="_blank" rel="noopener noreferrer" class="resource-link">
-          <i class="fas fa-users"></i>
-          <span class="resource-label">World Aquaculture Society</span>
-        </a>
-        <a href="https://mofad.gov.gh/" target="_blank" rel="noopener noreferrer" class="resource-link">
-          <i class="fas fa-flag-checkered"></i>
-          <span class="resource-label">Ghana Ministry of Fisheries</span>
-        </a>
+        <a href="https://www.fao.org/fishery/en/aquaculture" target="_blank" class="resource-link"><i class="fas fa-globe"></i> FAO Aquaculture (UN)</a>
+        <a href="https://thefishsite.com/" target="_blank" class="resource-link"><i class="fas fa-fish"></i> The Fish Site</a>
+        <a href="https://www.was.org/" target="_blank" class="resource-link"><i class="fas fa-users"></i> World Aquaculture Society</a>
+        <a href="https://mofad.gov.gh/" target="_blank" class="resource-link"><i class="fas fa-flag"></i> Ghana Ministry of Fisheries</a>
       </div>
     </div>
   </div>
-  <div class="copyright">© 2025 Edible Farms — Fresh. Local. Responsible. All rights reserved.</div>
+  <div class="copyright">© 2025 Edible Farms — Fresh. Local. Responsible.</div>
 </footer>
 
 <script>
-  AOS.init({ duration: 800, once: true, offset: 100 });
-
-  (function() {
-    const header = document.getElementById('mainHeader');
-    const menuToggle = document.getElementById('menuToggle');
-    const mobileNav = document.getElementById('mobileNav');
-    const contactForm = document.getElementById('contactForm');
-    const contactFormMessage = document.getElementById('contactFormMessage');
-    const submitBtn = document.getElementById('submitBtn');
-    const bulkOrderForm = document.getElementById('bulkOrderForm');
-    const bulkFormMessage = document.getElementById('bulkFormMessage');
-    const bulkSubmitBtn = document.getElementById('bulkSubmitBtn');
-
-    emailjs.init("9M02Bt8C6vjgHs8Ty");
-
-    window.addEventListener('scroll', () => {
-      header.classList.toggle('scrolled', window.scrollY > 40);
+  AOS.init({ duration: 800, once: true });
+  const header = document.getElementById('mainHeader');
+  window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 40));
+  document.getElementById('menuToggle').addEventListener('click', () => document.getElementById('mobileNav').classList.toggle('active'));
+  document.getElementById('mobileNav').querySelectorAll('a').forEach(link => link.addEventListener('click', () => document.getElementById('mobileNav').classList.remove('active')));
+  
+  emailjs.init("9M02Bt8C6vjgHs8Ty");
+  const contactForm = document.getElementById('contactForm');
+  const contactFormMessage = document.getElementById('contactFormMessage');
+  const submitBtn = document.getElementById('submitBtn');
+  
+  if(contactForm) {
+    contactForm.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const originalText = submitBtn.innerHTML;
+      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+      submitBtn.disabled = true;
+      try {
+        const response = await emailjs.send('service_mmoe6g5', 'template_rgoisa7', {
+          name: document.getElementById('userName').value,
+          email: document.getElementById('userEmail').value,
+          message: document.getElementById('userMessage').value
+        });
+        if(response.status === 200) {
+          contactFormMessage.className = 'form-message success';
+          contactFormMessage.innerHTML = '✓ Message sent successfully!';
+          contactForm.reset();
+        } else throw new Error('Failed');
+      } catch(error) {
+        contactFormMessage.className = 'form-message error';
+        contactFormMessage.innerHTML = '✗ Please email us directly at ediblefarms000@gmail.com';
+      } finally {
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+        setTimeout(() => contactFormMessage.style.display = 'none', 5000);
+      }
     });
-
-    if(menuToggle && mobileNav) {
-      menuToggle.addEventListener('click', () => mobileNav.classList.toggle('active'));
-      mobileNav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => mobileNav.classList.remove('active')));
-      document.addEventListener('click', (e) => {
-        if(mobileNav.classList.contains('active') && !mobileNav.contains(e.target) && e.target !== menuToggle)
-          mobileNav.classList.remove('active');
-      });
-    }
-
-    // Contact Form Submission
-    if(contactForm) {
-      contactForm.addEventListener('submit', async function(e) {
-        e.preventDefault();
-        const name = document.getElementById('userName').value;
-        const email = document.getElementById('userEmail').value;
-        const message = document.getElementById('userMessage').value;
-        
-        const originalText = submitBtn.innerHTML;
-        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-        submitBtn.disabled = true;
-        
-        const templateParams = { name: name, email: email, message: message };
-        
-        try {
-          const response = await emailjs.send('service_mmoe6g5', 'template_rgoisa7', templateParams);
-          if(response.status === 200) {
-            contactFormMessage.className = 'form-message success';
-            contactFormMessage.innerHTML = '✓ Message sent successfully! We\'ll get back to you soon.';
-            contactForm.reset();
-          } else throw new Error('Failed');
-        } catch(error) {
-          contactFormMessage.className = 'form-message error';
-          contactFormMessage.innerHTML = '✗ Sorry, something went wrong. Please email us directly at ediblefarms000@gmail.com';
-        } finally {
-          submitBtn.innerHTML = originalText;
-          submitBtn.disabled = false;
-          setTimeout(() => { contactFormMessage.style.display = 'none'; }, 5000);
-        }
-      });
-    }
-
-    // Bulk Order Form Submission
-    if(bulkOrderForm) {
-      bulkOrderForm.addEventListener('submit', async function(e) {
-        e.preventDefault();
-        
-        const businessName = document.getElementById('businessName').value;
-        const contactPerson = document.getElementById('contactPerson').value;
-        const email = document.getElementById('bulkEmail').value;
-        const phone = document.getElementById('bulkPhone').value;
-        const quantity = document.getElementById('quantity').value;
-        const frequency = document.getElementById('frequency').value;
-        const deliveryDate = document.getElementById('deliveryDate').value;
-        const processing = document.getElementById('processing').value;
-        const specialRequests = document.getElementById('specialRequests').value;
-        
-        const originalText = bulkSubmitBtn.innerHTML;
-        bulkSubmitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
-        bulkSubmitBtn.disabled = true;
-        
-        const message = `🛒 NEW BULK ORDER REQUEST 🛒\n\nBusiness: ${businessName}\nContact: ${contactPerson}\nEmail: ${email}\nPhone: ${phone}\n\n📦 Order Details:\nQuantity: ${quantity}\nFrequency: ${frequency}\nDelivery Date: ${deliveryDate}\nProcessing: ${processing}\n\n📝 Special Requests:\n${specialRequests || 'None'}`;
-        
-        const templateParams = { name: contactPerson, email: email, message: message };
-        
-        try {
-          const response = await emailjs.send('service_mmoe6g5', 'template_rgoisa7', templateParams);
-          if(response.status === 200) {
-            bulkFormMessage.className = 'form-message success';
-            bulkFormMessage.innerHTML = '✓ Bulk order request sent! We\'ll contact you within 24 hours.';
-            bulkOrderForm.reset();
-          } else throw new Error('Failed');
-        } catch(error) {
-          bulkFormMessage.className = 'form-message error';
-          bulkFormMessage.innerHTML = '✗ Submission failed. Please email us directly at ediblefarms000@gmail.com';
-        } finally {
-          bulkSubmitBtn.innerHTML = originalText;
-          bulkSubmitBtn.disabled = false;
-          setTimeout(() => { bulkFormMessage.style.display = 'none'; }, 5000);
-        }
-      });
-    }
-  })();
+  }
 </script>
 </body>
 </html>
