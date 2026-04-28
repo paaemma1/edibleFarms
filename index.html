@@ -392,46 +392,41 @@
     }
     .social-icons a:hover { background: linear-gradient(135deg, var(--accent-green), var(--accent-cyan)); color: #061d18; transform: translateY(-6px) scale(1.1); border-color: var(--accent-green); box-shadow: 0 10px 25px rgba(37,211,102,0.4); }
     
-    /* Newsletter styling */
-    .newsletter-wrapper {
+    /* Aquaculture Resources Links */
+    .resources-list {
       display: flex;
-      gap: 0.5rem;
-      margin-top: 0.5rem;
+      flex-direction: column;
+      gap: 0.75rem;
     }
-    .newsletter-wrapper input {
-      flex: 1;
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.2);
-      padding: 0.7rem 1rem;
-      border-radius: 40px;
-      color: white;
-      font-family: inherit;
-      transition: all 0.3s;
+    .resource-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0.6rem 0.8rem;
+      background: rgba(37,211,102,0.08);
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      color: #e0f2fe;
+      font-size: 0.85rem;
+      border: 1px solid rgba(37,211,102,0.2);
     }
-    .newsletter-wrapper input:focus {
-      outline: none;
-      border-color: var(--accent-green);
-      background: rgba(255,255,255,0.15);
-    }
-    .newsletter-wrapper button {
-      background: linear-gradient(135deg, var(--accent-green), var(--accent-cyan));
-      border: none;
-      border-radius: 40px;
-      padding: 0.7rem 1.2rem;
-      cursor: pointer;
+    .resource-link i {
       font-size: 1rem;
-      transition: all 0.3s;
-      color: #061d18;
-      font-weight: bold;
+      color: var(--accent-green);
+      transition: transform 0.3s;
     }
-    .newsletter-wrapper button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(37,211,102,0.4);
+    .resource-link:hover {
+      background: linear-gradient(135deg, rgba(37,211,102,0.2), rgba(0,229,255,0.1));
+      transform: translateX(5px);
+      border-color: var(--accent-green);
+      color: white;
     }
-    .newsletter-message {
-      font-size: 0.7rem;
-      margin-top: 0.5rem;
-      transition: all 0.3s;
+    .resource-link:hover i {
+      transform: scale(1.1);
+    }
+    .resource-label {
+      font-weight: 500;
     }
     
     .copyright { text-align: center; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.8rem; color: #9ca3af; }
@@ -452,7 +447,6 @@
       .btn { justify-content: center; }
       section { padding: 60px 5%; }
       .logo-container { transform: translateY(10px); }
-      .newsletter-wrapper { flex-direction: column; }
     }
 
     /* scroll reveal animations */
@@ -496,7 +490,7 @@
   <div class="hero-content" data-aos="fade-right" data-aos-duration="1000">
     <p class="hero-tagline">FRESH. LOCAL. RESPONSIBLE.</p>
     <h2>Premium Catfish.<br>Raised Naturally.</h2>
-    <p style="margin: 1rem 0 0; color:#d1dbe6; max-width: 550px;">Ditch the mystery meat. Edible Farms brings you buttery, high-protein catfish raised with a conscience. Locally sourced, sustainably grown, and delivered fresh, farm-to-fork at its finest.</p>
+    <p style="margin: 1rem 0 0; color:#d1dbe6; max-width: 550px;">Ditch the mystery meat. Edible Farms brings you buttery, high-protein catfish raised with a conscience. Locally sourced, sustainably grown, and delivered fresh — farm-to-fork at its finest.</p>
     <div class="btn-group">
       <a href="#bulk" class="btn btn-primary">Bulk Orders →</a>
       <a href="#contact" class="btn btn-outline">Buy for Home →</a>
@@ -518,7 +512,7 @@
   <div class="services-grid">
     <div class="service-card" data-aos="fade-up" data-aos-delay="0"><i class="fas fa-truck service-icon"></i><h3>Wholesale Supply</h3><p>Consistent weekly delivery for restaurants, hotels & catering businesses.</p></div>
     <div class="service-card" data-aos="fade-up" data-aos-delay="100"><i class="fas fa-home service-icon"></i><h3>Home Delivery</h3><p>Fresh catfish delivered to your door. Flexible subscriptions & family packs.</p></div>
-    <div class="service-card" data-aos="fade-up" data-aos-delay="200"><i class="fas fa-cut service-icon"></i><h3>Custom Processing</h3><p>Fillets, whole fish, or value-added cuts, tailored to your need.</p></div>
+    <div class="service-card" data-aos="fade-up" data-aos-delay="200"><i class="fas fa-cut service-icon"></i><h3>Custom Processing</h3><p>Fillets, whole fish, or value-added cuts — tailored to your need.</p></div>
     <div class="service-card" data-aos="fade-up" data-aos-delay="300"><i class="fas fa-chalkboard-user service-icon"></i><h3>Farm Tours & Education</h3><p>Learn about sustainable aquaculture. Perfect for schools & chef programs.</p></div>
   </div>
 </section>
@@ -551,10 +545,10 @@
   <h2 class="section-title" data-aos="fade-up">From Pond to <span>Plate</span></h2>
   <div class="gallery-grid">
     <div class="gallery-item" data-aos="flip-left" data-aos-delay="0"><img src="https://www.shutterstock.com/image-photo/some-white-catfish-popularly-known-600nw-2304531177.jpg" alt="Fresh whole catfish" loading="lazy"><div class="gallery-overlay">Fresh Catch</div></div>
-     <div class="gallery-item" data-aos="flip-left" data-aos-delay="400"><img src="https://www.fao.org/fishery/services/storage/fs/fishery/images/culturedspecies//clarias/12swam-pond-clarias-harvest-Santchou.jpg" alt="Morning harvest" loading="lazy"><div class="gallery-overlay">Morning Harvest</div></div>
     <div class="gallery-item" data-aos="flip-left" data-aos-delay="100"><img src="https://www.aquaculturealliance.org/wp-content/uploads/2009/09/ROGERSpic1-960x450.jpg" alt="Sustainable farm pond" loading="lazy"><div class="gallery-overlay">Natural Ponds</div></div>
+    <div class="gallery-item" data-aos="flip-left" data-aos-delay="200"><img src="https://fishtank.com.ng/wp-content/uploads/2020/12/DSC_5368-1-scaled.jpg" alt="Grilled catfish fillet" loading="lazy"><div class="gallery-overlay">Premium Fillets</div></div>
     <div class="gallery-item" data-aos="flip-left" data-aos-delay="300"><img src="https://emeraldtransportationsolutions.com/wp-content/uploads/2022/05/0ylzNNplW9qe0fPfGGeG9kHnnRZvqZSx1655986652.jpg" alt="Delivery truck" loading="lazy"><div class="gallery-overlay">Farm to Table</div></div>
-   <div class="gallery-item" data-aos="flip-left" data-aos-delay="200"><img src="https://fishtank.com.ng/wp-content/uploads/2020/12/DSC_5368-1-scaled.jpg" alt="Grilled catfish fillet" loading="lazy"><div class="gallery-overlay">Premium Fillets</div></div>
+    <div class="gallery-item" data-aos="flip-left" data-aos-delay="400"><img src="https://www.fao.org/fishery/services/storage/fs/fishery/images/culturedspecies//clarias/12swam-pond-clarias-harvest-Santchou.jpg" alt="Morning harvest" loading="lazy"><div class="gallery-overlay">Morning Harvest</div></div>
     <div class="gallery-item" data-aos="flip-left" data-aos-delay="500"><img src="https://cheflolaskitchen.com/wp-content/uploads/2025/07/Catfish-Steak.jpg" alt="Chef preparing catfish" loading="lazy"><div class="gallery-overlay">Chef Approved</div></div>
   </div>
   <p style="text-align: center; margin-top: 2rem; opacity: 0.7;">Fresh harvest, sustainable ponds, and premium fillets — captured daily.</p>
@@ -596,19 +590,31 @@
   <a href="#contact" class="btn btn-primary" style="background: linear-gradient(135deg, #25d366, #00e5ff);">Request a Quote →</a>
 </section>
 
-<!-- Footer -->
+<!-- Footer with Aquaculture Resources Links -->
 <footer>
   <div class="footer-grid">
     <div class="footer-col"><h4>Edible Farms</h4><p style="font-size:0.85rem;">Premium catfish, raised naturally. Local, responsible, and delicious.</p></div>
     <div class="footer-col"><h4>Quick Links</h4><a href="#home">Home</a><a href="#about">About</a><a href="#services">Services</a><a href="#contact">Contact</a></div>
     <div class="footer-col"><h4>Support</h4><a href="#bulk">Bulk Orders</a><a href="#">Shipping Policy</a><a href="#">Returns</a><a href="#">FAQs</a></div>
-    <div class="footer-col"><h4>Newsletter</h4>
-      <p style="font-size:0.8rem;">Get fresh updates & recipes.</p>
-      <div class="newsletter-wrapper">
-        <input type="email" id="newsletterEmail" placeholder="Your email">
-        <button id="newsletterBtn">→</button>
+    <div class="footer-col"><h4>📚 Learn Aquaculture</h4>
+      <div class="resources-list">
+        <a href="https://www.fao.org/fishery/en/aquaculture" target="_blank" rel="noopener noreferrer" class="resource-link">
+          <i class="fas fa-globe-africa"></i>
+          <span class="resource-label">FAO Aquaculture (UN)</span>
+        </a>
+        <a href="https://thefishsite.com/" target="_blank" rel="noopener noreferrer" class="resource-link">
+          <i class="fas fa-fish"></i>
+          <span class="resource-label">The Fish Site</span>
+        </a>
+        <a href="https://www.was.org/" target="_blank" rel="noopener noreferrer" class="resource-link">
+          <i class="fas fa-users"></i>
+          <span class="resource-label">World Aquaculture Society</span>
+        </a>
+        <a href="https://mofad.gov.gh/" target="_blank" rel="noopener noreferrer" class="resource-link">
+          <i class="fas fa-flag-checkered"></i>
+          <span class="resource-label">Ghana Ministry of Fisheries</span>
+        </a>
       </div>
-      <div id="newsletterMessage" class="newsletter-message"></div>
     </div>
   </div>
   <div class="copyright">© 2025 Edible Farms — Fresh. Local. Responsible. All rights reserved.</div>
@@ -624,9 +630,6 @@
     const contactForm = document.getElementById('contactForm');
     const formMessage = document.getElementById('formMessage');
     const submitBtn = document.getElementById('submitBtn');
-    const newsletterBtn = document.getElementById('newsletterBtn');
-    const newsletterEmail = document.getElementById('newsletterEmail');
-    const newsletterMessage = document.getElementById('newsletterMessage');
 
     emailjs.init("9M02Bt8C6vjgHs8Ty");
 
@@ -672,61 +675,6 @@
           submitBtn.innerHTML = originalText;
           submitBtn.disabled = false;
           setTimeout(() => { formMessage.style.display = 'none'; }, 5000);
-        }
-      });
-    }
-
-    // Newsletter Signup - Now Working!
-    if(newsletterBtn) {
-      newsletterBtn.addEventListener('click', async function() {
-        const email = newsletterEmail.value.trim();
-        
-        if(!email) {
-          newsletterMessage.style.color = '#ffb3b3';
-          newsletterMessage.innerHTML = '✗ Please enter your email address';
-          setTimeout(() => { newsletterMessage.innerHTML = ''; }, 3000);
-          return;
-        }
-        
-        if(!email.includes('@') || !email.includes('.')) {
-          newsletterMessage.style.color = '#ffb3b3';
-          newsletterMessage.innerHTML = '✗ Please enter a valid email address';
-          setTimeout(() => { newsletterMessage.innerHTML = ''; }, 3000);
-          return;
-        }
-        
-        const originalText = newsletterBtn.innerHTML;
-        newsletterBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
-        newsletterBtn.disabled = true;
-        
-        // Send newsletter signup notification
-        const templateParams = {
-          name: "Newsletter Subscriber",
-          email: email,
-          message: `📧 New newsletter subscription from: ${email}\n\nThis user has subscribed to your newsletter. Add them to your mailing list!`
-        };
-        
-        try {
-          const response = await emailjs.send('service_mmoe6g5', 'template_rgoisa7', templateParams);
-          if(response.status === 200) {
-            newsletterMessage.style.color = '#d4f5e0';
-            newsletterMessage.innerHTML = '✓ Thanks for subscribing! You\'ll hear from us soon.';
-            newsletterEmail.value = '';
-          } else throw new Error('Failed');
-        } catch(error) {
-          newsletterMessage.style.color = '#ffb3b3';
-          newsletterMessage.innerHTML = '✗ Something went wrong. Please try again later.';
-        } finally {
-          newsletterBtn.innerHTML = originalText;
-          newsletterBtn.disabled = false;
-          setTimeout(() => { newsletterMessage.innerHTML = ''; }, 5000);
-        }
-      });
-      
-      // Allow Enter key to submit newsletter
-      newsletterEmail.addEventListener('keypress', function(e) {
-        if(e.key === 'Enter') {
-          newsletterBtn.click();
         }
       });
     }
